@@ -28,7 +28,6 @@ class SearchResponse extends ApiResponse
     {
         return $this->results;
     }
-
 }
 
 class SearchResponseResultItem
@@ -63,7 +62,7 @@ class SearchResponseResultItem
         ];
 
         foreach ($responseMap as $apiField => $property) {
-            if (!isset($result[$apiField])) {
+            if (! isset($result[$apiField])) {
                 continue;
             }
             $this->$property = $result[$apiField];

@@ -2,9 +2,9 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Tests;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\DutchChamberOfCommerceApiServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\DutchChamberOfCommerceApiServiceProvider;
 
 class TestCase extends Orchestra
 {

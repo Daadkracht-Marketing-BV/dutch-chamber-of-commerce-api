@@ -164,8 +164,8 @@ class SearchRequest extends ApiRequest
 
         // remove null values (strict) and convert all boolean values to true/false strings
         $query = $query
-            ->filter(fn($value) => !is_null($value))
-            ->map(fn($value) => is_bool($value) ? ($value ? 'true' : 'false') : $value);
+            ->filter(fn ($value) => ! is_null($value))
+            ->map(fn ($value) => is_bool($value) ? ($value ? 'true' : 'false') : $value);
 
         return http_build_query($query->toArray());
     }
@@ -189,14 +189,14 @@ class SearchRequest extends ApiRequest
         $response = Http::withOptions(
             // set the CA bundle to the one provided by the package
             [
-                'verify' => dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'cacert.pem'
+                'verify' => dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'cacert.pem',
             ]
         )
-        ->withHeader('apikey', config('dutch-chamber-of-commerce-api.api_key'))
-        ->get(
-            url: $this->getApiEndpoint(),
-            query: $this->getQueryString()
-        );
+            ->withHeader('apikey', config('dutch-chamber-of-commerce-api.api_key'))
+            ->get(
+                url: $this->getApiEndpoint(),
+                query: $this->getQueryString()
+            );
 
         // pass the json to the response object
         return new SearchResponse(

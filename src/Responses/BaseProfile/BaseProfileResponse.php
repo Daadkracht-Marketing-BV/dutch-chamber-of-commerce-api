@@ -11,13 +11,20 @@ use Illuminate\Support\Collection;
 class BaseProfileResponse extends ApiResponse
 {
     protected mixed $cocNumber;
+
     protected bool $nonMailingIndicator;
+
     protected string $name;
+
     protected string $formalDateOfRecord;
+
     // TODO add materieleRegistratie fields
     protected int $totalNumberOfEmployees;
+
     protected int $statutoryName;
+
     protected Collection $tradeNames;
+
     protected Collection $sbiActivities;
 
     protected $_embedded = [];
@@ -37,13 +44,13 @@ class BaseProfileResponse extends ApiResponse
         $this->statutoryName = $responseData['statutaireNaam'];
         $this->tradeNames = collect($responseData['handelsnamen'])
             ->map(
-                fn($tradename) => new Tradename(
+                fn ($tradename) => new Tradename(
                     $tradename['naam'],
                     $tradename['volgorde']
                 ));
         $this->sbiActivities = collect($responseData['sbiActiviteiten'])
             ->map(
-                fn($sbiActivity) => new SbiActivity(
+                fn ($sbiActivity) => new SbiActivity(
                     $sbiActivity['sbiCode'],
                     $sbiActivity['sbiOmschrijving'],
                     $this->yesNoToBool($sbiActivity['indHoofdactiviteit'])
@@ -57,7 +64,7 @@ class BaseProfileResponse extends ApiResponse
      */
     private function yesNoToBool($value): bool
     {
-        if (!in_array($value, ['Ja', 'Nee'])) {
+        if (! in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException(
                 sprintf('Unexpected value for Ja/Nee field: %s', $value)
             );

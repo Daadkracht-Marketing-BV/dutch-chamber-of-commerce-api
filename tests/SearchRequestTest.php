@@ -2,7 +2,6 @@
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\Search\SearchRequest;
 use Illuminate\Support\Facades\Http;
-use Psr\Http\Client\ClientInterface;
 
 it('can create a search request', function () {
     $request = new SearchRequest();
@@ -72,7 +71,7 @@ it('correctly sets a boolean value formatted for the kvk api', function () {
     )->toBe('InclusiefInactieveRegistraties=false', 'InclusiefInactieveRegistraties should be false');
 });
 
-it('can parse a search API response', function() {
+it('can parse a search API response', function () {
     $request = new SearchRequest();
     $request->setCocNumber('63546167');
 
@@ -82,8 +81,8 @@ it('can parse a search API response', function() {
         'api.kvk.nl/*' => Http::sequence([
             Http::response(
                 body: fixture('search-response')
-            )
-        ])
+            ),
+        ]),
     ]);
 
     $response = $request->get();
