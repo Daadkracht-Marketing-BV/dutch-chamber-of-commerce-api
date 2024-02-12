@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class DutchChamberOfCommerceApiCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'dutch-chamber-of-commerce-api';
 
     public $description = 'My command';
 
