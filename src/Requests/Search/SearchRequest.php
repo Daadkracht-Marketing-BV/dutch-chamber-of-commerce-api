@@ -184,7 +184,7 @@ class SearchRequest extends ApiRequest
 
     public function get(): SearchResponse
     {
-//        $apiKey = config('dutch-chamber-of-commerce-api.api_key');
+        //        $apiKey = config('dutch-chamber-of-commerce-api.api_key');
 
         $response = Http::withOptions(
             // set the CA bundle to the one provided by the package
