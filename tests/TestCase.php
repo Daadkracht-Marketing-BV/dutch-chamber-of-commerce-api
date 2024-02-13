@@ -4,6 +4,7 @@ namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Tests;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\DutchChamberOfCommerceApiServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -26,6 +27,9 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
+        $app->bootstrapWith([
+            LoadEnvironmentVariables::class
+        ]);
         config()->set('database.default', 'testing');
 
         /*
