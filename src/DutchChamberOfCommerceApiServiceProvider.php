@@ -2,9 +2,9 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Commands\DutchChamberOfCommerceApiCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Commands\DutchChamberOfCommerceApiCommand;
 
 class DutchChamberOfCommerceApiServiceProvider extends PackageServiceProvider
 {
