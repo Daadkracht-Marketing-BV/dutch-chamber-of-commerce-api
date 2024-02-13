@@ -40,6 +40,8 @@ class Address
             poBox: $responseData['poBox'] ?? null,
             city: $responseData['city'] ?? null,
             country: $responseData['country'] ?? null,
+            region: $responseData['region'] ?? null,
+            geoData: $responseData['geoData'] ? collect($responseData['geoData']) : null,
         );
     }
 
