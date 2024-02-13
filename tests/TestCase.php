@@ -28,7 +28,7 @@ class TestCase extends Orchestra
     public function getEnvironmentSetUp($app)
     {
         $app->bootstrapWith([
-            LoadEnvironmentVariables::class
+            LoadEnvironmentVariables::class,
         ]);
         config()->set('database.default', 'testing');
 
