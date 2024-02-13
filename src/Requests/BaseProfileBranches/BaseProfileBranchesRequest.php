@@ -2,7 +2,6 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfileBranches;
 
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfileBranches\BaseProfileBranchesResponse;
 use Illuminate\Support\Facades\Http;
 
@@ -44,7 +43,7 @@ class BaseProfileBranchesRequest
 
     public function getSubRequest(): string
     {
-        return '/' . $this->cocNumber . '/vestigingen';
+        return '/'.$this->cocNumber.'/vestigingen';
     }
 
     public function get()
@@ -56,24 +55,22 @@ class BaseProfileBranchesRequest
         );
     }
 
-    /**
-     * @return \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
-     */
     protected function getResponse(): \Illuminate\Http\Client\Response|\GuzzleHttp\Promise\PromiseInterface
     {
         $apiKey = config('dutch-chamber-of-commerce-api.api_key');
 
         $response = Http::withOptions(
-        // set the CA bundle to the one provided by the package
+            // set the CA bundle to the one provided by the package
             [
-                'verify' => dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'cacert.pem'
+                'verify' => dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'cacert.pem',
             ]
         )
             ->withHeader('apikey', $apiKey)
             ->get(
-                url: $this->getApiEndpoint() . '/' . $this->getSubRequest(),
+                url: $this->getApiEndpoint().'/'.$this->getSubRequest(),
                 query: $this->getQueryString()
             );
+
         return $response;
     }
 }

@@ -29,7 +29,6 @@ class SearchResponse extends ApiResponse
     {
         return $this->results;
     }
-
 }
 
 class SearchResponseResultItem
@@ -42,8 +41,7 @@ class SearchResponseResultItem
         protected Collection $addresses,
         protected string $type,
         protected bool $active
-    )
-    {
+    ) {
     }
 
     public static function fromResponse($responseData): self
@@ -58,7 +56,7 @@ class SearchResponseResultItem
         $items = [];
 
         foreach ($responseMap as $apiField => $property) {
-            if (!isset($responseData[$apiField])) {
+            if (! isset($responseData[$apiField])) {
                 continue;
             }
 
@@ -86,7 +84,7 @@ class SearchResponseResultItem
                 } else {
                     return new ForeignAddress(
                         $address['straat'],
-                        $address['postcode'] . ' ' . $address['plaats'],
+                        $address['postcode'].' '.$address['plaats'],
                         $address['land']
                     );
                 }
@@ -148,7 +146,7 @@ class SearchResponseResultItem
 
     public static function yesNoToBool($value): bool
     {
-        if (!in_array($value, ['Ja', 'Nee'])) {
+        if (! in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException("Unexpected value for Ja/Nee field: $value");
         }
 
@@ -170,8 +168,7 @@ class DomesticAddress
         protected ?int $poBoxNumber,
         protected ?string $postalCode,
         protected string $city
-    )
-    {
+    ) {
     }
 
     public function getStreetName(): string

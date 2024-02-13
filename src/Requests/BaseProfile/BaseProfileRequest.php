@@ -4,11 +4,7 @@ namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
-use Psr\Http\Client\ClientInterface;
 
 class BaseProfileRequest extends ApiRequest
 {
@@ -55,7 +51,7 @@ class BaseProfileRequest extends ApiRequest
 
     public function getSubRequest(): string
     {
-        return '/' . $this->cocNumber;
+        return '/'.$this->cocNumber;
     }
 
     public function get(): BaseProfileResponse
@@ -67,24 +63,22 @@ class BaseProfileRequest extends ApiRequest
         );
     }
 
-    /**
-     * @return \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
-     */
     protected function getResponse(): \Illuminate\Http\Client\Response|\GuzzleHttp\Promise\PromiseInterface
     {
         $apiKey = config('dutch-chamber-of-commerce-api.api_key');
 
         $response = Http::withOptions(
-        // set the CA bundle to the one provided by the package
+            // set the CA bundle to the one provided by the package
             [
-                'verify' => dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'cacert.pem'
+                'verify' => dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'cacert.pem',
             ]
         )
             ->withHeader('apikey', $apiKey)
             ->get(
-                url: $this->getApiEndpoint() . '/' . $this->getSubRequest(),
+                url: $this->getApiEndpoint().'/'.$this->getSubRequest(),
                 query: $this->getQueryString()
             );
+
         return $response;
     }
 }

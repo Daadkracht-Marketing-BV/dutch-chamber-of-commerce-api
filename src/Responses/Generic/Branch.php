@@ -11,8 +11,7 @@ class Branch
         protected bool $isProtectedAddress,
         protected bool $isCommercialBranch,
         protected string $fullAddress
-    )
-    {
+    ) {
 
     }
 }

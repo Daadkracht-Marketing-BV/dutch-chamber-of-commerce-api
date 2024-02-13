@@ -25,7 +25,7 @@ class BaseProfileBranchesResponse
         $nonCommercialBranches = $responseData['aantalNietCommercieleVestigingen'] ?? 0;
         $totalBranches = $responseData['totaalAantalVestigingen'] ?? 0;
         $branches = collect($responseData['vestigingen'])->map(
-            fn($branch) => new Branch(
+            fn ($branch) => new Branch(
                 $branch['vestigingsnummer'],
                 $branch['eersteHandelsnaam'],
                 static::yesNoToBool($branch['indHoofdvestiging'] ?? 'Nee'),
@@ -46,7 +46,7 @@ class BaseProfileBranchesResponse
 
     protected static function yesNoToBool($value): bool
     {
-        if (!in_array($value, ['Ja', 'Nee'])) {
+        if (! in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException("Unexpected value for Ja/Nee field: $value");
         }
 

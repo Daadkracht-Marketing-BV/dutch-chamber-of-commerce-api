@@ -39,13 +39,13 @@ class BaseProfileResponse extends ApiResponse
         $statutoryName = $responseData['statutaireNaam'];
         $tradeNames = collect($responseData['handelsnamen'])
             ->map(
-                fn($tradename) => new Tradename(
+                fn ($tradename) => new Tradename(
                     $tradename['naam'],
                     $tradename['volgorde']
                 ));
         $sbiActivities = collect($responseData['sbiActiviteiten'])
             ->map(
-                fn($sbiActivity) => new SbiActivity(
+                fn ($sbiActivity) => new SbiActivity(
                     $sbiActivity['sbiCode'],
                     $sbiActivity['sbiOmschrijving'],
                     static::yesNoToBool($sbiActivity['indHoofdactiviteit'])
@@ -71,7 +71,7 @@ class BaseProfileResponse extends ApiResponse
      */
     private static function yesNoToBool($value): bool
     {
-        if (!in_array($value, ['Ja', 'Nee'])) {
+        if (! in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException(
                 sprintf('Unexpected value for Ja/Nee field: %s', $value)
             );
