@@ -8,7 +8,7 @@ class Branch
         protected string $branchNumber,
         protected string $firstTradeName,
         protected bool $isMainBranch,
-        protected bool $isProtectedAddress,
+        protected bool $isShieldedAddress,
         protected bool $isCommercialBranch,
         protected string $fullAddress
     ) {

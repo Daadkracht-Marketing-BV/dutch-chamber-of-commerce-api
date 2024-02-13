@@ -1,6 +1,9 @@
 <?php
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\Search\SearchRequest;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\DomesticAddress;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\ForeignAddress;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponseResultItem;
 use Illuminate\Support\Facades\Http;
 
 it('can create a search request', function () {
@@ -71,7 +74,11 @@ it('correctly sets a boolean value formatted for the kvk api', function () {
     )->toBe('InclusiefInactieveRegistraties=false', 'InclusiefInactieveRegistraties should be false');
 });
 
-it('can parse a search API response', function () {
+/**
+ * @return \DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse
+ */
+function performBasicSearch(): \DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse
+{
     $request = new SearchRequest();
     $request->setCocNumber('63546167');
 
@@ -86,4 +93,60 @@ it('can parse a search API response', function () {
     ]);
 
     $response = $request->get();
+    return $response;
+}
+
+it('can parse a search API response', function () {
+    $response = performBasicSearch();
+
+    /** @var SearchResponseResultItem $firstResult */
+    $firstResult = $response->getResults()->first();
+    expect($firstResult)
+        ->toBeInstanceOf(
+            class: SearchResponseResultItem::class
+        )
+        ->and(
+            $firstResult->getCocNumber()
+        )->toBe('63546167');
+});
+
+it('can parse a search API response with multiple results', function () {
+    $response = performBasicSearch();
+    expect($response->getResults()->count())->toBe(2);
+});
+
+it('can parse the branch number in a search API response', function () {
+    $response = performBasicSearch();
+    /** @var SearchResponseResultItem $firstResult */
+    $firstResult = $response->getResults()->first();
+    expect($firstResult->getBranchNumber())->toBe('000022655646');
+});
+
+it('can parse the result type in a search API response', function () {
+    $response = performBasicSearch();
+    /** @var SearchResponseResultItem $firstResult */
+    $firstResult = $response->getResults()->first();
+    expect($firstResult->getType())->toBe('hoofdvestiging');
+});
+
+it('can parse the name in a search API response', function () {
+    $response = performBasicSearch();
+    /** @var SearchResponseResultItem $firstResult */
+    $firstResult = $response->getResults()->first();
+    expect($firstResult->getName())->toBe('Daadkracht Marketing B.V.');
+});
+
+it('can parse the address in a search API response', function () {
+    $response = performBasicSearch();
+    /** @var SearchResponseResultItem $firstResult */
+    $firstResult = $response->getResults()->first();
+    /** @var DomesticAddress|ForeignAddress $address */
+    $address = $firstResult->getAddresses()->first();
+    expect($address)
+        ->toBeInstanceOf(
+            class: DomesticAddress::class
+        )
+        ->and(
+            $address->getStreetName()
+        )->toBe('De Opgang');
 });

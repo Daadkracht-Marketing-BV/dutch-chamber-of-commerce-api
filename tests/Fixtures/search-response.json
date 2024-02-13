@@ -1,7 +1,7 @@
 {
     "pagina": 1,
     "resultatenPerPagina": 10,
-    "totaal": 1,
+    "totaal": 2,
     "resultaten": [
         {
             "kvkNummer": "63546167",
@@ -25,12 +25,23 @@
                     "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
                 }
             ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "naam": "Daadkracht Marketing B.V.",
+            "type": "rechtspersoon",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                }
+            ]
         }
     ],
     "links": [
         {
             "rel": "self",
-            "href": "https://api.kvk.nl/api/v2/zoeken?kvknummer=63546167&pagina=1&resultatenperpagina=10&type=hoofdvestiging"
+            "href": "https://api.kvk.nl/api/v2/zoeken?kvknummer=63546167&pagina=1&resultatenperpagina=10"
         }
     ]
 }
