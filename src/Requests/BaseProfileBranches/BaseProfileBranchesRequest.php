@@ -1,16 +1,12 @@
 <?php
 
-namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile;
+namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfileBranches;
 
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse;
-use Illuminate\Database\Eloquent\Model;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfileBranches\BaseProfileBranchesResponse;
 use Illuminate\Support\Facades\Http;
-use Psr\Http\Client\ClientInterface;
 
-class BaseProfileRequest extends ApiRequest
+class BaseProfileBranchesRequest
 {
     protected string $liveEndpoint = 'https://api.kvk.nl/api/v1/basisprofielen';
 
@@ -27,6 +23,13 @@ class BaseProfileRequest extends ApiRequest
         $this->testMode = $testMode;
     }
 
+    public function setCocNumber(string $cocNumber): self
+    {
+        $this->cocNumber = $cocNumber;
+
+        return $this;
+    }
+
     public function getApiEndpoint(): string
     {
         return $this->testMode ? $this->testEndpoint : $this->liveEndpoint;
@@ -39,30 +42,16 @@ class BaseProfileRequest extends ApiRequest
         ];
     }
 
-    public function setCocNumber(string $cocNumber): self
-    {
-        $this->cocNumber = $cocNumber;
-
-        return $this;
-    }
-
-    public function setRequestGeoData(bool $requestGeoData): self
-    {
-        $this->requestGeoData = $requestGeoData;
-
-        return $this;
-    }
-
     public function getSubRequest(): string
     {
-        return '/' . $this->cocNumber;
+        return '/' . $this->cocNumber . '/vestigingen';
     }
 
-    public function get(): BaseProfileResponse
+    public function get()
     {
         $response = $this->getResponse();
 
-        return BaseProfileResponse::fromResponse(
+        return BaseProfileBranchesResponse::fromResponse(
             responseData: $response->json()
         );
     }

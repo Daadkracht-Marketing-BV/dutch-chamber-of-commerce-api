@@ -10,52 +10,66 @@ use Illuminate\Support\Collection;
 
 class BaseProfileResponse extends ApiResponse
 {
-    protected mixed $cocNumber;
-    protected bool $nonMailingIndicator;
-    protected string $name;
-    protected string $formalDateOfRecord;
-    // TODO add materieleRegistratie fields
-    protected int $totalNumberOfEmployees;
-    protected int $statutoryName;
-    protected Collection $tradeNames;
-    protected Collection $sbiActivities;
+    public function __construct(
+        protected string $cocNumber,
+        protected bool $nonMailingIndicator,
+        protected string $name,
+        protected string $formalDateOfRecord,
+        protected int $totalNumberOfEmployees,
+        protected string $statutoryName,
+        protected Collection $tradeNames,
+        protected Collection $sbiActivities,
+        protected array $_embedded
+    ) {
 
-    protected $_embedded = [];
-
-    /**
-     * @throws UnexpectedResponseException
-     */
-    public function __construct($responseData)
-    {
-        $this->cocNumber = $responseData['kvkNummer'];
-        $this->nonMailingIndicator = $this->yesNoToBool(
-            $responseData['indNonMailing']
-        );
-        $this->name = $responseData['naam'];
-        $this->formalDateOfRecord = $responseData['formeleRegistratieDatum'];
-        $this->totalNumberOfEmployees = $responseData['totaalWerkzamePersonen'];
-        $this->statutoryName = $responseData['statutaireNaam'];
-        $this->tradeNames = collect($responseData['handelsnamen'])
-            ->map(
-                fn($tradename) => new Tradename(
-                    $tradename['naam'],
-                    $tradename['volgorde']
-                ));
-        $this->sbiActivities = collect($responseData['sbiActiviteiten'])
-            ->map(
-                fn($sbiActivity) => new SbiActivity(
-                    $sbiActivity['sbiCode'],
-                    $sbiActivity['sbiOmschrijving'],
-                    $this->yesNoToBool($sbiActivity['indHoofdactiviteit'])
-                ));
-
-        $this->_embedded = $responseData['_embedded'];
     }
 
     /**
      * @throws UnexpectedResponseException
      */
-    private function yesNoToBool($value): bool
+    public static function fromResponse($responseData): self
+    {
+        $cocNumber = $responseData['kvkNummer'];
+        $nonMailingIndicator = static::yesNoToBool(
+            $responseData['indNonMailing']
+        );
+        $name = $responseData['naam'];
+        $formalDateOfRecord = $responseData['formeleRegistratiedatum'];
+        $totalNumberOfEmployees = $responseData['totaalWerkzamePersonen'];
+        $statutoryName = $responseData['statutaireNaam'];
+        $tradeNames = collect($responseData['handelsnamen'])
+            ->map(
+                fn($tradename) => new Tradename(
+                    $tradename['naam'],
+                    $tradename['volgorde']
+                ));
+        $sbiActivities = collect($responseData['sbiActiviteiten'])
+            ->map(
+                fn($sbiActivity) => new SbiActivity(
+                    $sbiActivity['sbiCode'],
+                    $sbiActivity['sbiOmschrijving'],
+                    static::yesNoToBool($sbiActivity['indHoofdactiviteit'])
+                ));
+
+        $_embedded = $responseData['_embedded'];
+
+        return new self(
+            cocNumber: $cocNumber,
+            nonMailingIndicator: $nonMailingIndicator,
+            name: $name,
+            formalDateOfRecord: $formalDateOfRecord,
+            totalNumberOfEmployees: $totalNumberOfEmployees,
+            statutoryName: $statutoryName,
+            tradeNames: $tradeNames,
+            sbiActivities: $sbiActivities,
+            _embedded: $_embedded
+        );
+    }
+
+    /**
+     * @throws UnexpectedResponseException
+     */
+    private static function yesNoToBool($value): bool
     {
         if (!in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException(
