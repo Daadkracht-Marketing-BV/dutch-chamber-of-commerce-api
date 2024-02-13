@@ -69,7 +69,7 @@ class BaseProfileResponse extends ApiResponse
     /**
      * @throws UnexpectedResponseException
      */
-    private static function yesNoToBool($value): bool
+    protected static function yesNoToBool($value): bool
     {
         if (! in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException(
@@ -105,7 +105,7 @@ class BaseProfileResponse extends ApiResponse
         return $this->totalNumberOfEmployees;
     }
 
-    public function getStatutoryName(): int
+    public function getStatutoryName(): string
     {
         return $this->statutoryName;
     }
