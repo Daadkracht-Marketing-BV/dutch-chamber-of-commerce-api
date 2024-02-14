@@ -138,3 +138,26 @@ it('can parse the branch formal date of record in a branch profile API response'
         $response->getFormalDateOfRecord()->format('Y-m-d')
     )->toBe('2015-06-18');
 });
+
+it('can parse the branch material registration in a branch profile API response', closure: function () {
+    $response = performBranchRequest();
+    expect($response->getMaterialRegistration())->toBeInstanceOf(class: Collection::class)
+        ->and($response->getMaterialRegistration()->count())->toBe(1)
+        ->and($response->getMaterialRegistration()->first()['type'])->toBe('dateStart')
+        ->and($response->getMaterialRegistration()->first()['date']->format('Y-m-d'))->toBe('2011-05-18');
+});
+
+it('can parse the branch is main branch in a branch profile API response', closure: function () {
+    $response = performBranchRequest();
+    expect($response->getIsMainBranch())->toBe(true);
+});
+
+it('can parse the branch is commercial branch in a branch profile API response', closure: function () {
+    $response = performBranchRequest();
+    expect($response->getIsCommercialBranch())->toBe(true);
+});
+
+it('can parse the branch trade names in a branch profile API response', closure: function () {
+    $response = performBranchRequest();
+    expect($response->getFirstTradeName())->toBe('Daadkracht Marketing B.V.');
+});

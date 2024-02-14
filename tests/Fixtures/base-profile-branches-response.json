@@ -1,0 +1,36 @@
+{
+    "kvkNummer": "63546167",
+    "aantalCommercieleVestigingen": 1,
+    "aantalNietCommercieleVestigingen": 0,
+    "totaalAantalVestigingen": 1,
+    "vestigingen": [
+        {
+            "vestigingsnummer": "000022655646",
+            "eersteHandelsnaam": "Daadkracht Marketing B.V.",
+            "indHoofdvestiging": "Ja",
+            "indAdresAfgeschermd": "Nee",
+            "indCommercieleVestiging": "Ja",
+            "volledigAdres": "De Opgang 2 2 9203GD Drachten",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167/hoofdvestiging"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        }
+    ],
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167/vestigingen"
+        },
+        {
+            "rel": "basisprofiel",
+            "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+        }
+    ]
+}
