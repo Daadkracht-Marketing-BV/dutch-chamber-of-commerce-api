@@ -14,9 +14,6 @@ it('can create a branch profile request', function () {
     expect($request)->toBeInstanceOf(class: BranchProfileRequest::class);
 });
 
-/**
- * @return BranchProfileResponse
- */
 function performBranchRequest(): BranchProfileResponse
 {
     $request = new BranchProfileRequest();

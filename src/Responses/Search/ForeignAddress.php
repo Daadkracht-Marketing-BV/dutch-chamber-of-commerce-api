@@ -10,8 +10,7 @@ class ForeignAddress implements JsonSerializable
         protected string $streetHouseNumber,
         protected string $zipCity,
         protected string $country
-    )
-    {
+    ) {
 
     }
 

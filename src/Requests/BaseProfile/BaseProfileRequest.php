@@ -81,6 +81,7 @@ class BaseProfileRequest extends ApiRequest
         if (ApiException::isException($responseData)) {
             throw ApiException::fromResponse($responseData);
         }
+
         return BaseProfileResponse::fromResponse(
             responseData: $responseData
         );

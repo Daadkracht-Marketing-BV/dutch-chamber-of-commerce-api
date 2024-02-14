@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Http;
 
 class BranchProfileRequest extends ApiRequest
 {
-
     protected string $liveEndpoint = 'https://api.kvk.nl/api/v1/vestigingsprofielen';
 
     protected string $testEndpoint = 'https://api.kvk.nl/test/api/v1/vestigingsprofielen';
@@ -19,6 +18,7 @@ class BranchProfileRequest extends ApiRequest
     protected bool $testMode;
 
     protected string $branchNumber;
+
     protected bool $requestGeoData;
 
     public function __construct($testMode = false)
@@ -74,12 +74,14 @@ class BranchProfileRequest extends ApiRequest
     public function testMode(bool $testMode): self
     {
         $this->testMode = $testMode;
+
         return $this;
     }
 
     public function requestGeoData(bool $requestGeoData): self
     {
         $this->requestGeoData = $requestGeoData;
+
         return $this;
     }
 }

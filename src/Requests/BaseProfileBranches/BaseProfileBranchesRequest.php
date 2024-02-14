@@ -51,7 +51,6 @@ class BaseProfileBranchesRequest extends ApiRequest
         return $this->setRequestGeoData($requestGeoData);
     }
 
-
     public function getApiEndpoint(): string
     {
         return $this->testMode ? $this->testEndpoint : $this->liveEndpoint;
@@ -77,6 +76,7 @@ class BaseProfileBranchesRequest extends ApiRequest
         if (ApiException::isException($responseData)) {
             throw ApiException::fromResponse($responseData);
         }
+
         return BaseProfileBranchesResponse::fromResponse(
             responseData: $responseData
         );

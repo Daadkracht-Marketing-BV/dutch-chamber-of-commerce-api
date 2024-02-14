@@ -7,14 +7,13 @@ use JsonSerializable;
 class DomesticAddress implements JsonSerializable
 {
     public function __construct(
-        protected string  $streetName,
+        protected string $streetName,
         protected ?string $houseNumber,
         protected ?string $houseLetter,
-        protected ?int    $poBoxNumber,
+        protected ?int $poBoxNumber,
         protected ?string $postalCode,
-        protected string  $city
-    )
-    {
+        protected string $city
+    ) {
     }
 
     public function getStreetName(): string

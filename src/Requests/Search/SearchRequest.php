@@ -273,13 +273,13 @@ class SearchRequest extends ApiRequest
                 query: $this->getQueryString()
             );
 
-
         // pass the json to the response object
         $responseJson = $response->json();
 
         if (ApiException::isException($responseJson)) {
             throw ApiException::fromResponse($responseJson);
         }
+
         return SearchResponse::fromResponse(
             response: $responseJson
         );
