@@ -28,7 +28,7 @@ function performBranchRequest(): BranchProfileResponse
 
     Http::preventStrayRequests();
 
-    $response = $request->get();
+    $response = $request->fetch();
 
     return $response;
 }

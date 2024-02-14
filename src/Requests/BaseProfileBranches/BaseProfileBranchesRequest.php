@@ -2,12 +2,13 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfileBranches;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfileBranches\BaseProfileBranchesResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-class BaseProfileBranchesRequest
+class BaseProfileBranchesRequest extends ApiRequest
 {
     protected string $liveEndpoint = 'https://api.kvk.nl/api/v1/basisprofielen';
 
@@ -67,7 +68,7 @@ class BaseProfileBranchesRequest
         return '/'.$this->cocNumber.'/vestigingen';
     }
 
-    public function get(): BaseProfileBranchesResponse
+    public function fetch(): BaseProfileBranchesResponse
     {
         $response = $this->getResponse();
 

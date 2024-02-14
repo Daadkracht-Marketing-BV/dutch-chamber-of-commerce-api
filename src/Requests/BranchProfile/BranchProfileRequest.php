@@ -50,7 +50,7 @@ class BranchProfileRequest extends ApiRequest
         ])->get($this->getApiEndpoint().'/'.$this->branchNumber);
     }
 
-    public function get(): BranchProfileResponse
+    public function fetch(): BranchProfileResponse
     {
         $response = $this->getResponse();
 

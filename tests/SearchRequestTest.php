@@ -92,7 +92,7 @@ function performBasicSearch(): \DaadkrachtMarketing\DutchChamberOfCommerceApi\Re
         ]),
     ]);
 
-    $response = $request->get();
+    $response = $request->fetch();
     return $response;
 }
 

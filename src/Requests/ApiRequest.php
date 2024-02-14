@@ -6,5 +6,5 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 
 abstract class ApiRequest
 {
-    abstract public function get(): ApiResponse;
+    abstract public function fetch(): ApiResponse;
 }

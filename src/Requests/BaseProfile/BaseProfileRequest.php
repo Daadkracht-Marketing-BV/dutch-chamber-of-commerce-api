@@ -71,7 +71,7 @@ class BaseProfileRequest extends ApiRequest
     /**
      * @throws UnexpectedResponseException
      */
-    public function get(): BaseProfileResponse
+    public function fetch(): BaseProfileResponse
     {
         $response = $this->getResponse();
 

@@ -255,7 +255,7 @@ class SearchRequest extends ApiRequest
         }
     }
 
-    public function get(): SearchResponse
+    public function fetch(): SearchResponse
     {
         $apiKey = config('dutch-chamber-of-commerce-api.api_key');
 

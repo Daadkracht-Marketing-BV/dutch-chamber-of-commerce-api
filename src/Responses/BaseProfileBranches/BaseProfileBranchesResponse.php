@@ -3,11 +3,12 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfileBranches;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Branch;
 use Illuminate\Support\Collection;
 use JsonSerializable;
 
-class BaseProfileBranchesResponse implements JsonSerializable
+class BaseProfileBranchesResponse extends ApiResponse implements JsonSerializable
 {
     public function __construct(
         protected string $cocNumber,
