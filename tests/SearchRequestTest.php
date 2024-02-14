@@ -150,3 +150,15 @@ it('can parse the address in a search API response', function () {
             $address->getStreetName()
         )->toBe('De Opgang');
 });
+
+it('generates an exception if an invalid COC number is searched for', function () {
+    $request = new SearchRequest();
+    $request->setCocNumber('6354616744');
+    Http::fake([
+        'api.kvk.nl/*' => Http::response(
+            body: fixture('search-response-invalid-cocnumber'),
+            status: 400
+        ),
+    ]);
+    $request->fetch();
+})->throws(\DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException::class, 'Het KVK-nummer 6354616744 is niet valide.');
