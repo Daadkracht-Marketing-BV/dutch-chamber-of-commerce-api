@@ -207,6 +207,9 @@ class BranchProfileResponse extends ApiResponse
         return $this->totalEmployees;
     }
 
+    /**
+     * @return Collection<Tradename>
+     */
     public function getTradeNames(): Collection
     {
         return $this->tradeNames;

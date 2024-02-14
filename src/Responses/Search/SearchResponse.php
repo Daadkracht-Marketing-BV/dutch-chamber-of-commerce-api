@@ -39,4 +39,9 @@ class SearchResponse extends ApiResponse implements JsonSerializable
     {
         return $this->serialize();
     }
+
+    public function __serialize(): array
+    {
+        return $this->serialize();
+    }
 }
