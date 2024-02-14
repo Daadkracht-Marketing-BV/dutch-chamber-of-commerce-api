@@ -106,6 +106,16 @@ class Address implements JsonSerializable
         return $this->country;
     }
 
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function getGeoData(): ?Collection
+    {
+        return $this->geoData;
+    }
+
     public function serialize(): array
     {
         return [
@@ -121,6 +131,8 @@ class Address implements JsonSerializable
             'poBox' => $this->poBox,
             'city' => $this->city,
             'country' => $this->country,
+            'region' => $this->region,
+            'geoData' => $this->geoData?->map(fn ($geoData) => $geoData->toArray())->toArray(),
         ];
     }
 

@@ -2,6 +2,7 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BranchProfile;
 
+use Carbon\Carbon;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Address;
@@ -17,7 +18,7 @@ class BranchProfileResponse extends ApiResponse
         protected string $cocNumber,
         protected ?string $rsin,
         protected bool $nonMailingIndicator,
-        protected string $formalDateOfRecord,
+        protected Carbon $formalDateOfRecord,
         protected Collection $materialRegistration,
         protected string $statutoryName,
         protected string $firstTradeName,
@@ -126,7 +127,7 @@ class BranchProfileResponse extends ApiResponse
             cocNumber: $items['cocNumber'],
             rsin: $items['rsin'],
             nonMailingIndicator: $items['nonMailingIndicator'],
-            formalDateOfRecord: $items['formalDateOfRecord'],
+            formalDateOfRecord: Date::make($items['formalDateOfRecord']),
             materialRegistration: $items['materialRegistration'],
             statutoryName: $items['statutoryName'],
             firstTradeName: $items['firstTradeName'],
@@ -162,7 +163,7 @@ class BranchProfileResponse extends ApiResponse
         return $this->nonMailingIndicator;
     }
 
-    public function getFormalDateOfRecord(): string
+    public function getFormalDateOfRecord(): Carbon
     {
         return $this->formalDateOfRecord;
     }
