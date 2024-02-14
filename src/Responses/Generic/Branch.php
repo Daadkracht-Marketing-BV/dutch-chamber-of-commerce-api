@@ -2,6 +2,7 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BranchProfile\BranchProfileRequest;
 use JsonSerializable;
 
 class Branch implements JsonSerializable
@@ -47,6 +48,13 @@ class Branch implements JsonSerializable
         return $this->fullAddress;
     }
 
+    public function createFullBranchProfileRequest($testMode = false): BranchProfileRequest
+    {
+        $branchProfileRequest = new BranchProfileRequest($testMode);
+        $branchProfileRequest->branchNumber($this->getBranchNumber());
+
+        return $branchProfileRequest;
+    }
     public function serialize(): array
     {
         return [
