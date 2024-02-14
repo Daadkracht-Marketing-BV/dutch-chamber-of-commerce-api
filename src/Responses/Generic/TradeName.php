@@ -4,7 +4,7 @@ namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
 use JsonSerializable;
 
-class Tradename implements JsonSerializable
+class TradeName implements JsonSerializable
 {
     public function __construct(protected string $name, protected int $order)
     {

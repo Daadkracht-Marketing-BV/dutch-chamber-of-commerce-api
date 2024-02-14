@@ -6,7 +6,7 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseE
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Address;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Tradename;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 
@@ -107,7 +107,7 @@ class BranchProfileResponse extends ApiResponse
         $items['tradeNames'] = collect($responseData['handelsnamen'])->sort(
             fn ($a, $b) => $a['volgorde'] <=> $b['volgorde']
         )->map(
-            fn ($tradeName) => new Tradename(
+            fn ($tradeName) => new TradeName(
                 name: $tradeName['naam'],
                 order: $tradeName['volgorde']
             )
@@ -208,7 +208,7 @@ class BranchProfileResponse extends ApiResponse
     }
 
     /**
-     * @return Collection<Tradename>
+     * @return Collection<TradeName>
      */
     public function getTradeNames(): Collection
     {

@@ -5,7 +5,7 @@ namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Tradename;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
 use Illuminate\Support\Collection;
 use JsonSerializable;
 
@@ -40,7 +40,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         $statutoryName = $responseData['statutaireNaam'];
         $tradeNames = collect($responseData['handelsnamen'])
             ->map(
-                fn ($tradename) => new Tradename(
+                fn ($tradename) => new TradeName(
                     $tradename['naam'],
                     $tradename['volgorde']
                 ));
