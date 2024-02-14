@@ -2,6 +2,8 @@
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BranchProfile\BranchProfileRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BranchProfile\BranchProfileResponse;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Address;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Tradename;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -53,11 +55,13 @@ it('can parse a branch profile API response', function () {
 
 it('can parse the branch name in a branch profile API response', function () {
     $response = performBranchRequest();
-    expect($response->getTradeNames()->first())->toBe('Daadkracht Marketing B.V.');
+    expect($response->getTradeNames()->first())->toBeInstanceOf(class: Tradename::class)->and($response->getTradeNames()->first()->getName())->toBe('Daadkracht Marketing B.V.');
 });
 
-it('can parse the branch address in a branch profile API response', function () {
+it('can parse the branch address in a branch profile API response', closure: function () {
     $response = performBranchRequest();
+    /** @var Address $address */
     $address = $response->getAddresses()->first();
-    expect()->toBe('De Opgang');
+    expect($address)->toBeInstanceOf(class: Address::class)
+        ->and($address->getStreetName())->toBe('De Opgang');
 });

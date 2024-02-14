@@ -8,21 +8,17 @@ use JsonSerializable;
 
 class SearchResponse extends ApiResponse implements JsonSerializable
 {
-    /**
-     * @var Collection<SearchResponseResultItem>
-     */
-    protected Collection $results;
-
-    public function __construct(array $response)
+    public function __construct(protected Collection $results)
     {
-        $this->parseResponse($response);
     }
 
-    protected function parseResponse(array $response): void
+    public static function fromResponse(array $response): self
     {
-        $this->results = collect($response['resultaten'])->map(function ($result) {
+        $results = collect($response['resultaten'])->map(function ($result) {
             return SearchResponseResultItem::fromResponse($result);
         });
+
+        return new self(results: $results);
     }
 
     public function getResults(): Collection

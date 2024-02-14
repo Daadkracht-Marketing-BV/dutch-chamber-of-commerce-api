@@ -2,6 +2,7 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\Search;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse;
 use Illuminate\Support\Facades\Http;
@@ -272,9 +273,15 @@ class SearchRequest extends ApiRequest
                 query: $this->getQueryString()
             );
 
+
         // pass the json to the response object
-        return new SearchResponse(
-            $response->json()
+        $responseJson = $response->json();
+
+        if (ApiException::isException($responseJson)) {
+            throw ApiException::fromResponse($responseJson);
+        }
+        return SearchResponse::fromResponse(
+            response: $responseJson
         );
     }
 }

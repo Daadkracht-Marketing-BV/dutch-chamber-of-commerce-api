@@ -2,6 +2,7 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
@@ -69,14 +70,19 @@ class BaseProfileRequest extends ApiRequest
     }
 
     /**
+     * @throws ApiException
      * @throws UnexpectedResponseException
      */
     public function fetch(): BaseProfileResponse
     {
         $response = $this->getResponse();
 
+        $responseData = $response->json();
+        if (ApiException::isException($responseData)) {
+            throw ApiException::fromResponse($responseData);
+        }
         return BaseProfileResponse::fromResponse(
-            responseData: $response->json()
+            responseData: $responseData
         );
     }
 
