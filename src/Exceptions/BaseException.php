@@ -2,8 +2,7 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions;
 
-use Exception;
-
-class UnexpectedResponseException extends BaseException
+class BaseException extends \Exception
 {
+
 }
