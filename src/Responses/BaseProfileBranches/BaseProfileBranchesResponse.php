@@ -6,7 +6,7 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseE
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Branch;
 use Illuminate\Support\Collection;
 
-class BaseProfileBranchesResponse
+class BaseProfileBranchesResponse implements \JsonSerializable
 {
     public function __construct(
         protected string $cocNumber,
@@ -51,5 +51,51 @@ class BaseProfileBranchesResponse
         }
 
         return $value === 'Ja';
+    }
+
+    public function getCocNumber(): string
+    {
+        return $this->cocNumber;
+    }
+
+    public function getCommercialBranches(): int
+    {
+        return $this->commercialBranches;
+    }
+
+    public function getNonCommercialBranches(): int
+    {
+        return $this->nonCommercialBranches;
+    }
+
+    public function getTotalBranches(): int
+    {
+        return $this->totalBranches;
+    }
+
+    public function getBranches(): Collection
+    {
+        return $this->branches;
+    }
+
+    public function serialize(): array
+    {
+        return [
+            'cocNumber' => $this->cocNumber,
+            'commercialBranches' => $this->commercialBranches,
+            'nonCommercialBranches' => $this->nonCommercialBranches,
+            'totalBranches' => $this->totalBranches,
+            'branches' => $this->branches->map(fn ($branch) => $branch->serialize())->toArray(),
+        ];
+    }
+
+    public function __serialize(): array
+    {
+        return $this->serialize();
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->serialize();
     }
 }

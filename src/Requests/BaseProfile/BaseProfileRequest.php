@@ -49,6 +49,17 @@ class BaseProfileRequest extends ApiRequest
         return $this;
     }
 
+    // setter aliases without set prefix
+    public function cocNumber(string $cocNumber): self
+    {
+        return $this->setCocNumber($cocNumber);
+    }
+
+    public function requestGeoData(bool $requestGeoData): self
+    {
+        return $this->setRequestGeoData($requestGeoData);
+    }
+
     public function getSubRequest(): string
     {
         return '/'.$this->cocNumber;

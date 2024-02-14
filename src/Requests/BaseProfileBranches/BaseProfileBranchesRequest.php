@@ -29,6 +29,25 @@ class BaseProfileBranchesRequest
         return $this;
     }
 
+    // setter aliases without set prefix
+    public function cocNumber(string $cocNumber): self
+    {
+        return $this->setCocNumber($cocNumber);
+    }
+
+    public function setRequestGeoData(bool $requestGeoData): self
+    {
+        $this->requestGeoData = $requestGeoData;
+
+        return $this;
+    }
+
+    public function requestGeoData(bool $requestGeoData): self
+    {
+        return $this->setRequestGeoData($requestGeoData);
+    }
+
+
     public function getApiEndpoint(): string
     {
         return $this->testMode ? $this->testEndpoint : $this->liveEndpoint;

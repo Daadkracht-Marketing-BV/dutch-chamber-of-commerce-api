@@ -157,6 +157,79 @@ class SearchRequest extends ApiRequest
         return $this;
     }
 
+    // setter aliases without set prefix
+    public function cocNumber(?string $cocNumber): self
+    {
+        return $this->setCocNumber($cocNumber);
+    }
+
+    public function rsin(?string $rsin): self
+    {
+        return $this->setRsin($rsin);
+    }
+
+    public function branchNumber(?string $branchNumber): self
+    {
+        return $this->setBranchNumber($branchNumber);
+    }
+
+    public function name(?string $name): self
+    {
+        return $this->setName($name);
+    }
+
+    public function streetName(?string $streetName): self
+    {
+        return $this->setStreetName($streetName);
+    }
+
+    public function houseNumber(?string $houseNumber): self
+    {
+        return $this->setHouseNumber($houseNumber);
+    }
+
+    public function houseLetter(?string $houseLetter): self
+    {
+        return $this->setHouseLetter($houseLetter);
+    }
+
+    public function postalCode(?string $postalCode): self
+    {
+        return $this->setPostalCode($postalCode);
+    }
+
+    public function place(?string $place): self
+    {
+        return $this->setPlace($place);
+    }
+
+    public function poBoxNumber(?string $poBoxNumber): self
+    {
+        return $this->setPoBoxNumber($poBoxNumber);
+    }
+
+    public function type(array|string|null $type): self
+    {
+        return $this->setType($type);
+    }
+
+    public function includeInactiveRegistrations(bool $includeInactiveRegistrations): self
+    {
+        return $this->setIncludeInactiveRegistrations($includeInactiveRegistrations);
+    }
+
+    public function page(int $page): self
+    {
+        return $this->setPage($page);
+    }
+
+    public function resultsPerPage(int $resultsPerPage): self
+    {
+        return $this->setResultsPerPage($resultsPerPage);
+    }
+
+    // end setter aliases without set prefix
+
     public function getQueryString(): string
     {
         // convert query to collection

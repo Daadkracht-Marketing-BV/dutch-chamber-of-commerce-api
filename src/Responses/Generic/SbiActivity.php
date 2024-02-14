@@ -2,7 +2,7 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
-class SbiActivity
+class SbiActivity implements \JsonSerializable
 {
     public function __construct(protected string $sbiCode, protected string $sbiDescription, protected bool $isMainActivity)
     {
@@ -22,5 +22,24 @@ class SbiActivity
     public function getIsMainActivity(): bool
     {
         return $this->isMainActivity;
+    }
+
+    public function serialize(): array
+    {
+        return [
+            'sbiCode' => $this->sbiCode,
+            'sbiDescription' => $this->sbiDescription,
+            'isMainActivity' => $this->isMainActivity,
+        ];
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->serialize();
+    }
+
+    public function __serialize(): array
+    {
+        return $this->serialize();
     }
 }

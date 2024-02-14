@@ -8,7 +8,7 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Tradename;
 use Illuminate\Support\Collection;
 
-class BaseProfileResponse extends ApiResponse
+class BaseProfileResponse extends ApiResponse implements \JsonSerializable
 {
     public function __construct(
         protected string $cocNumber,
@@ -123,5 +123,30 @@ class BaseProfileResponse extends ApiResponse
     public function getEmbedded(): array
     {
         return $this->_embedded;
+    }
+
+    public function serialize(): array
+    {
+        return [
+            'cocNumber' => $this->cocNumber,
+            'nonMailingIndicator' => $this->nonMailingIndicator,
+            'name' => $this->name,
+            'formalDateOfRecord' => $this->formalDateOfRecord,
+            'totalNumberOfEmployees' => $this->totalNumberOfEmployees,
+            'statutoryName' => $this->statutoryName,
+            'tradeNames' => $this->tradeNames,
+            'sbiActivities' => $this->sbiActivities,
+            '_embedded' => $this->_embedded
+        ];
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->serialize();
+    }
+
+    public function __serialize(): array
+    {
+        return $this->serialize();
     }
 }

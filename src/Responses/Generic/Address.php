@@ -4,7 +4,7 @@ namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
 use Illuminate\Support\Collection;
 
-class Address
+class Address implements \JsonSerializable
 {
     public function __construct(
         protected string $type,
@@ -124,6 +124,11 @@ class Address
     }
 
     public function __serialize(): array
+    {
+        return $this->serialize();
+    }
+
+    public function jsonSerialize(): array
     {
         return $this->serialize();
     }
