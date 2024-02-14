@@ -71,6 +71,7 @@ it('can parse the branch name in a base profile branches API response', function
     $response = performBranchesRequest();
     /** @var Collection<Branch> $branches */
     $branches = $response->getBranches();
+    /** @var Branch $firstBranch */
     $firstBranch = $branches->first();
     expect($firstBranch->getFirstTradeName())->toBe('Daadkracht Marketing B.V.');
 });
