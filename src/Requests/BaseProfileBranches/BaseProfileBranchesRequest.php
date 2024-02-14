@@ -3,6 +3,8 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfileBranches;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfileBranches\BaseProfileBranchesResponse;
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class BaseProfileBranchesRequest
@@ -65,7 +67,7 @@ class BaseProfileBranchesRequest
         return '/'.$this->cocNumber.'/vestigingen';
     }
 
-    public function get()
+    public function get(): BaseProfileBranchesResponse
     {
         $response = $this->getResponse();
 
@@ -74,11 +76,11 @@ class BaseProfileBranchesRequest
         );
     }
 
-    protected function getResponse(): \Illuminate\Http\Client\Response|\GuzzleHttp\Promise\PromiseInterface
+    protected function getResponse(): Response|PromiseInterface
     {
         $apiKey = config('dutch-chamber-of-commerce-api.api_key');
 
-        $response = Http::withOptions(
+        return Http::withOptions(
             // set the CA bundle to the one provided by the package
             [
                 //                'verify' => dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'cacert.pem',
@@ -90,7 +92,5 @@ class BaseProfileBranchesRequest
                 url: $this->getApiEndpoint().'/'.$this->getSubRequest(),
                 query: $this->getQueryString()
             );
-
-        return $response;
     }
 }

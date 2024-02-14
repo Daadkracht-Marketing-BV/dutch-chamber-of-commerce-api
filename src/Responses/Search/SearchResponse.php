@@ -2,11 +2,11 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use Illuminate\Support\Collection;
+use JsonSerializable;
 
-class SearchResponse extends ApiResponse implements \JsonSerializable
+class SearchResponse extends ApiResponse implements JsonSerializable
 {
     /**
      * @var Collection<SearchResponseResultItem>

@@ -2,7 +2,9 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
-class Tradename implements \JsonSerializable
+use JsonSerializable;
+
+class Tradename implements JsonSerializable
 {
     public function __construct(protected string $name, protected int $order)
     {

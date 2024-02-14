@@ -2,7 +2,9 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
-class SbiActivity implements \JsonSerializable
+use JsonSerializable;
+
+class SbiActivity implements JsonSerializable
 {
     public function __construct(protected string $sbiCode, protected string $sbiDescription, protected bool $isMainActivity)
     {

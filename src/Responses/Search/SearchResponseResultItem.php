@@ -4,8 +4,9 @@ namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use Illuminate\Support\Collection;
+use JsonSerializable;
 
-class SearchResponseResultItem implements \JsonSerializable
+class SearchResponseResultItem implements JsonSerializable
 {
     public function __construct(
         protected string     $cocNumber,
@@ -19,6 +20,9 @@ class SearchResponseResultItem implements \JsonSerializable
     {
     }
 
+    /**
+     * @throws UnexpectedResponseException
+     */
     public static function fromResponse($responseData): self
     {
         $responseMap = [
@@ -119,6 +123,9 @@ class SearchResponseResultItem implements \JsonSerializable
         ];
     }
 
+    /**
+     * @throws UnexpectedResponseException
+     */
     public static function yesNoToBool($value): bool
     {
         if (!in_array($value, ['Ja', 'Nee'])) {

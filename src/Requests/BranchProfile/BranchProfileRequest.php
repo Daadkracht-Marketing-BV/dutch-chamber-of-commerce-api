@@ -18,6 +18,7 @@ class BranchProfileRequest extends ApiRequest
     protected bool $testMode;
 
     protected string $branchNumber;
+    protected bool $requestGeoData;
 
     public function __construct($testMode = false)
     {

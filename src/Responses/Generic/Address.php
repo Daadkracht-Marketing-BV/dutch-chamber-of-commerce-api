@@ -3,8 +3,9 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
 use Illuminate\Support\Collection;
+use JsonSerializable;
 
-class Address implements \JsonSerializable
+class Address implements JsonSerializable
 {
     public function __construct(
         protected string $type,
@@ -25,7 +26,7 @@ class Address implements \JsonSerializable
 
     }
 
-    public static function fromResponse(array $responseData)
+    public static function fromResponse(array $responseData): Address
     {
         return new self(
             type: $responseData['type'],

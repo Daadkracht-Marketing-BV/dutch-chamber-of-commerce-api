@@ -5,8 +5,9 @@ namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfileBra
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Branch;
 use Illuminate\Support\Collection;
+use JsonSerializable;
 
-class BaseProfileBranchesResponse implements \JsonSerializable
+class BaseProfileBranchesResponse implements JsonSerializable
 {
     public function __construct(
         protected string $cocNumber,
@@ -44,6 +45,9 @@ class BaseProfileBranchesResponse implements \JsonSerializable
         );
     }
 
+    /**
+     * @throws UnexpectedResponseException
+     */
     protected static function yesNoToBool($value): bool
     {
         if (! in_array($value, ['Ja', 'Nee'])) {

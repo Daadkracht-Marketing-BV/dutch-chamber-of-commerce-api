@@ -34,6 +34,9 @@ class BranchProfileResponse extends ApiResponse
 
     }
 
+    /**
+     * @throws UnexpectedResponseException
+     */
     public static function fromResponse(array $responseData): self
     {
         $responseMap = [
@@ -74,7 +77,7 @@ class BranchProfileResponse extends ApiResponse
         $items['materialRegistration'] = collect($responseData['materieleRegistratie'])->map(
             fn ($date, $type) => [
                 'type' => $typeMap[$type] ?? $type,
-                'date' => Date::make($date, 'Ymd'),
+                'date' => Date::make($date),
             ]
         );
 

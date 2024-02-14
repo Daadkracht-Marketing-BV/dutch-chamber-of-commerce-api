@@ -2,7 +2,9 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
-class Branch implements \JsonSerializable
+use JsonSerializable;
+
+class Branch implements JsonSerializable
 {
     public function __construct(
         protected string $branchNumber,

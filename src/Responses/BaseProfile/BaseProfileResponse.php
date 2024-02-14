@@ -7,8 +7,9 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Tradename;
 use Illuminate\Support\Collection;
+use JsonSerializable;
 
-class BaseProfileResponse extends ApiResponse implements \JsonSerializable
+class BaseProfileResponse extends ApiResponse implements JsonSerializable
 {
     public function __construct(
         protected string $cocNumber,
@@ -80,7 +81,7 @@ class BaseProfileResponse extends ApiResponse implements \JsonSerializable
         return $value === 'Ja';
     }
 
-    public function getCocNumber(): mixed
+    public function getCocNumber(): string
     {
         return $this->cocNumber;
     }

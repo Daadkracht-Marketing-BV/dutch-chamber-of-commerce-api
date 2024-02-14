@@ -2,8 +2,11 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class BaseProfileRequest extends ApiRequest
@@ -65,6 +68,9 @@ class BaseProfileRequest extends ApiRequest
         return '/'.$this->cocNumber;
     }
 
+    /**
+     * @throws UnexpectedResponseException
+     */
     public function get(): BaseProfileResponse
     {
         $response = $this->getResponse();
@@ -74,11 +80,11 @@ class BaseProfileRequest extends ApiRequest
         );
     }
 
-    protected function getResponse(): \Illuminate\Http\Client\Response|\GuzzleHttp\Promise\PromiseInterface
+    protected function getResponse(): Response|PromiseInterface
     {
         $apiKey = config('dutch-chamber-of-commerce-api.api_key');
 
-        $response = Http::withOptions(
+        return Http::withOptions(
             // set the CA bundle to the one provided by the package
             [
                 //                'verify' => dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'cacert.pem',
@@ -90,7 +96,5 @@ class BaseProfileRequest extends ApiRequest
                 url: $this->getApiEndpoint().'/'.$this->getSubRequest(),
                 query: $this->getQueryString()
             );
-
-        return $response;
     }
 }

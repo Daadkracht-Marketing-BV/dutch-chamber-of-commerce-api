@@ -2,7 +2,9 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
-class ForeignAddress implements \JsonSerializable
+use JsonSerializable;
+
+class ForeignAddress implements JsonSerializable
 {
     public function __construct(
         protected string $streetHouseNumber,
