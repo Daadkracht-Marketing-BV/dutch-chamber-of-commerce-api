@@ -43,3 +43,8 @@ it('can parse the non mailing indicator in a base profile API response', functio
     $response = performBaseProfileRequest();
     expect($response->getNonMailingIndicator())->toBe(true);
 });
+
+it('can parse the statutory name in a base profile API response', function () {
+    $response = performBaseProfileRequest();
+    expect($response->getStatutoryName())->toBe('Daadkracht Marketing B.V.');
+});
