@@ -81,3 +81,8 @@ it('can parse the SBI activities in a base profile API response', function () {
         $firstSbiActivity->getIsMainActivity()
     )->toBe(true);
 });
+
+it('can parse the name in a base profile API response', function () {
+    $response = performBaseProfileRequest();
+    expect($response->getName())->toBe('Daadkracht Marketing B.V.');
+});
