@@ -98,54 +98,54 @@ it('can parse a search API response', function () {
     $response = performBasicSearch();
 
     /** @var SearchResponseResultItem $firstResult */
-    $firstResult = $response->getResults()->first();
+    $firstResult = $response->results->first();
     expect($firstResult)
         ->toBeInstanceOf(
             class: SearchResponseResultItem::class
         )
         ->and(
-            $firstResult->getCocNumber()
+            $firstResult->cocNumber
         )->toBe('63546167');
 });
 
 it('can parse a search API response with multiple results', function () {
     $response = performBasicSearch();
-    expect($response->getResults()->count())->toBe(2);
+    expect($response->results->count())->toBe(2);
 });
 
 it('can parse the branch number in a search API response', function () {
     $response = performBasicSearch();
     /** @var SearchResponseResultItem $firstResult */
-    $firstResult = $response->getResults()->first();
-    expect($firstResult->getBranchNumber())->toBe('000022655646');
+    $firstResult = $response->results->first();
+    expect($firstResult->branchNumber)->toBe('000022655646');
 });
 
 it('can parse the result type in a search API response', function () {
     $response = performBasicSearch();
     /** @var SearchResponseResultItem $firstResult */
-    $firstResult = $response->getResults()->first();
-    expect($firstResult->getType())->toBe('hoofdvestiging');
+    $firstResult = $response->results->first();
+    expect($firstResult->type)->toBe('hoofdvestiging');
 });
 
 it('can parse the name in a search API response', function () {
     $response = performBasicSearch();
     /** @var SearchResponseResultItem $firstResult */
-    $firstResult = $response->getResults()->first();
-    expect($firstResult->getName())->toBe('Daadkracht Marketing B.V.');
+    $firstResult = $response->results->first();
+    expect($firstResult->name)->toBe('Daadkracht Marketing B.V.');
 });
 
 it('can parse the address in a search API response', function () {
     $response = performBasicSearch();
     /** @var SearchResponseResultItem $firstResult */
-    $firstResult = $response->getResults()->first();
+    $firstResult = $response->results->first();
     /** @var DomesticAddress|ForeignAddress $address */
-    $address = $firstResult->getAddresses()->first();
+    $address = $firstResult->addresses->first();
     expect($address)
         ->toBeInstanceOf(
             class: DomesticAddress::class
         )
         ->and(
-            $address->getStreetName()
+            $address->streetName
         )->toBe('De Opgang');
 });
 
