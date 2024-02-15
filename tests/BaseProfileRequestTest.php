@@ -37,58 +37,58 @@ it('can parse a base profile API response', function () {
     expect($response)
         ->toBeInstanceOf(class: BaseProfileResponse::class)
         ->and(
-            $response->getCocNumber()
+            $response->cocNumber
         )->toBe('63546167');
 });
 
 it('can parse the trade names in a base profile API response', function () {
     $response = performBaseProfileRequest();
-    $tradeNames = $response->getTradeNames();
+    $tradeNames = $response->tradeNames;
 
     /** @var TradeName $firstTradeName */
     $firstTradeName = $tradeNames->first();
     expect($tradeNames->count())->toBe(1)->and(
-        $firstTradeName->getName()
+        $firstTradeName->name
     )->toBe('Daadkracht Marketing B.V.')
         ->and(
-            $firstTradeName->getOrder()
+            $firstTradeName->order
         )->toBe(0);
 });
 
 it('can parse the non mailing indicator in a base profile API response', function () {
     $response = performBaseProfileRequest();
-    expect($response->getNonMailingIndicator())->toBe(true);
+    expect($response->nonMailingIndicator)->toBe(true);
 });
 
 it('can parse the statutory name in a base profile API response', function () {
     $response = performBaseProfileRequest();
-    expect($response->getStatutoryName())->toBe('Daadkracht Marketing B.V.');
+    expect($response->statutoryName)->toBe('Daadkracht Marketing B.V.');
 });
 
 it('can parse the total number of employees in a base profile API response', function () {
     $response = performBaseProfileRequest();
-    expect($response->getTotalNumberOfEmployees())->toBe(6);
+    expect($response->totalNumberOfEmployees)->toBe(6);
 });
 
 it('can parse the SBI activities in a base profile API response', function () {
     $response = performBaseProfileRequest();
-    $sbiActivities = $response->getSbiActivities();
+    $sbiActivities = $response->sbiActivities;
 
     /** @var SbiActivity $firstSbiActivity */
     $firstSbiActivity = $sbiActivities->first();
     expect($sbiActivities->count())->toBe(1)
         ->and(
-            $firstSbiActivity->getSbiCode()
+            $firstSbiActivity->sbiCode
         )->toBe('7320')
         ->and(
-            $firstSbiActivity->getSbiDescription()
+            $firstSbiActivity->sbiDescription
         )->toBe('Markt- en opinieonderzoekbureaus')
         ->and(
-            $firstSbiActivity->getIsMainActivity()
+            $firstSbiActivity->isMainActivity
         )->toBe(true);
 });
 
 it('can parse the name in a base profile API response', function () {
     $response = performBaseProfileRequest();
-    expect($response->getName())->toBe('Daadkracht Marketing B.V.');
+    expect($response->name)->toBe('Daadkracht Marketing B.V.');
 });

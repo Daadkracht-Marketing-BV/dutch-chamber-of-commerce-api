@@ -3,9 +3,11 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfileBranches\BaseProfileBranchesRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
@@ -13,16 +15,18 @@ use JsonSerializable;
 
 class BaseProfileResponse extends ApiResponse implements JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
-        protected string $cocNumber,
-        protected bool $nonMailingIndicator,
-        protected string $name,
-        protected Carbon $formalDateOfRecord,
-        protected int $totalNumberOfEmployees,
-        protected string $statutoryName,
-        protected Collection $tradeNames,
-        protected Collection $sbiActivities,
-        protected array $_embedded
+        public string $cocNumber,
+        public bool $nonMailingIndicator,
+        public string $name,
+        public Carbon $formalDateOfRecord,
+        public int $totalNumberOfEmployees,
+        public string $statutoryName,
+        public Collection $tradeNames,
+        public Collection $sbiActivities,
+        public array $_embedded
     ) {
 
     }
@@ -69,6 +73,11 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         );
     }
 
+    public function createBaseProfileBranchesRequest(): BaseProfileBranchesRequest
+    {
+        return (new BaseProfileBranchesRequest())->cocNumber($this->cocNumber);
+    }
+
     /**
      * @throws UnexpectedResponseException
      */
@@ -81,75 +90,5 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         }
 
         return $value === 'Ja';
-    }
-
-    public function getCocNumber(): string
-    {
-        return $this->cocNumber;
-    }
-
-    public function getNonMailingIndicator(): bool
-    {
-        return $this->nonMailingIndicator;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getFormalDateOfRecord(): string
-    {
-        return $this->formalDateOfRecord;
-    }
-
-    public function getTotalNumberOfEmployees(): int
-    {
-        return $this->totalNumberOfEmployees;
-    }
-
-    public function getStatutoryName(): string
-    {
-        return $this->statutoryName;
-    }
-
-    public function getTradeNames(): Collection
-    {
-        return $this->tradeNames;
-    }
-
-    public function getSbiActivities(): Collection
-    {
-        return $this->sbiActivities;
-    }
-
-    public function getEmbedded(): array
-    {
-        return $this->_embedded;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'cocNumber' => $this->cocNumber,
-            'nonMailingIndicator' => $this->nonMailingIndicator,
-            'name' => $this->name,
-            'formalDateOfRecord' => $this->formalDateOfRecord,
-            'totalNumberOfEmployees' => $this->totalNumberOfEmployees,
-            'statutoryName' => $this->statutoryName,
-            'tradeNames' => $this->tradeNames,
-            'sbiActivities' => $this->sbiActivities,
-            '_embedded' => $this->_embedded,
-        ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->serialize();
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
     }
 }

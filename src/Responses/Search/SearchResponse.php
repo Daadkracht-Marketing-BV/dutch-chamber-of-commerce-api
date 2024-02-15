@@ -3,13 +3,17 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use JsonSerializable;
 
 class SearchResponse extends ApiResponse implements JsonSerializable
 {
-    public function __construct(protected Collection $results)
-    {
+    use SerializableResponse;
+
+    public function __construct(
+        public Collection $results
+    ) {
     }
 
     public static function fromResponse(array $response): self
@@ -19,29 +23,5 @@ class SearchResponse extends ApiResponse implements JsonSerializable
         });
 
         return new self(results: $results);
-    }
-
-    public function getResults(): Collection
-    {
-        return $this->results;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'results' => $this->results->map(function ($result) {
-                return $result->serialize();
-            })->toArray(),
-        ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->serialize();
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
     }
 }

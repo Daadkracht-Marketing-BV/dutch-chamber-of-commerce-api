@@ -3,19 +3,23 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use JsonSerializable;
 
 class SearchResponseResultItem implements JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
-        protected string $cocNumber,
-        protected ?string $rsin,
-        protected ?string $branchNumber,
-        protected string $name,
-        protected Collection $addresses,
-        protected string $type,
-        protected bool $active
+        public string $cocNumber,
+        public ?string $rsin,
+        public ?string $branchNumber,
+        public string $name,
+        public Collection $addresses,
+        public string $type,
+        public bool $active
     ) {
     }
 
@@ -72,56 +76,6 @@ class SearchResponseResultItem implements JsonSerializable
         );
     }
 
-    public function getCocNumber(): string
-    {
-        return $this->cocNumber;
-    }
-
-    public function getRsin(): ?string
-    {
-        return $this->rsin;
-    }
-
-    public function getBranchNumber(): ?string
-    {
-        return $this->branchNumber;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getAddresses(): Collection
-    {
-        return $this->addresses;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function isActive(): bool
-    {
-        return $this->active;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'cocNumber' => $this->cocNumber,
-            'rsin' => $this->rsin,
-            'branchNumber' => $this->branchNumber,
-            'name' => $this->name,
-            'addresses' => $this->addresses->map(function ($address) {
-                return $address->serialize();
-            })->toArray(),
-            'type' => $this->type,
-            'active' => $this->active,
-        ];
-    }
-
     /**
      * @throws UnexpectedResponseException
      */
@@ -134,13 +88,8 @@ class SearchResponseResultItem implements JsonSerializable
         return $value === 'Ja';
     }
 
-    public function __serialize(): array
+    public function createBaseProfileRequest(): BaseProfileRequest
     {
-        return $this->serialize();
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->serialize();
+        return (new BaseProfileRequest())->cocNumber($this->cocNumber);
     }
 }

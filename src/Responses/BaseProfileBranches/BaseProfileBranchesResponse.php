@@ -5,17 +5,20 @@ namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfileBra
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Branch;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use JsonSerializable;
 
 class BaseProfileBranchesResponse extends ApiResponse implements JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
-        protected string $cocNumber,
-        protected int $commercialBranches,
-        protected int $nonCommercialBranches,
-        protected int $totalBranches,
-        protected Collection $branches
+        public string $cocNumber,
+        public int $commercialBranches,
+        public int $nonCommercialBranches,
+        public int $totalBranches,
+        public Collection $branches
     ) {
 
     }
@@ -56,51 +59,5 @@ class BaseProfileBranchesResponse extends ApiResponse implements JsonSerializabl
         }
 
         return $value === 'Ja';
-    }
-
-    public function getCocNumber(): string
-    {
-        return $this->cocNumber;
-    }
-
-    public function getCommercialBranches(): int
-    {
-        return $this->commercialBranches;
-    }
-
-    public function getNonCommercialBranches(): int
-    {
-        return $this->nonCommercialBranches;
-    }
-
-    public function getTotalBranches(): int
-    {
-        return $this->totalBranches;
-    }
-
-    public function getBranches(): Collection
-    {
-        return $this->branches;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'cocNumber' => $this->cocNumber,
-            'commercialBranches' => $this->commercialBranches,
-            'nonCommercialBranches' => $this->nonCommercialBranches,
-            'totalBranches' => $this->totalBranches,
-            'branches' => $this->branches->map(fn ($branch) => $branch->serialize())->toArray(),
-        ];
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->serialize();
     }
 }

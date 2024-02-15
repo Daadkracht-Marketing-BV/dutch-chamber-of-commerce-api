@@ -8,29 +8,33 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Address;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
+use JsonSerializable;
 
-class BranchProfileResponse extends ApiResponse
+class BranchProfileResponse extends ApiResponse implements JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
-        protected string $branchNumber,
-        protected string $cocNumber,
-        protected ?string $rsin,
-        protected bool $nonMailingIndicator,
-        protected Carbon $formalDateOfRecord,
-        protected Collection $materialRegistration,
-        protected string $statutoryName,
-        protected string $firstTradeName,
-        protected bool $isMainBranch,
-        protected bool $isCommercialBranch,
-        protected int $fulltimeEmployees,
-        protected int $parttimeEmployees,
-        protected int $totalEmployees,
-        protected Collection $tradeNames,
-        protected Collection $addresses,
-        protected Collection $websites,
-        protected Collection $sbiActivities,
+        public string $branchNumber,
+        public string $cocNumber,
+        public ?string $rsin,
+        public bool $nonMailingIndicator,
+        public Carbon $formalDateOfRecord,
+        public Collection $materialRegistration,
+        public string $statutoryName,
+        public string $firstTradeName,
+        public bool $isMainBranch,
+        public bool $isCommercialBranch,
+        public int $fulltimeEmployees,
+        public int $parttimeEmployees,
+        public int $totalEmployees,
+        public Collection $tradeNames,
+        public Collection $addresses,
+        public Collection $websites,
+        public Collection $sbiActivities,
     ) {
 
     }
@@ -141,122 +145,6 @@ class BranchProfileResponse extends ApiResponse
             websites: $items['websites'],
             sbiActivities: $items['sbiActivities'],
         );
-    }
-
-    public function getBranchNumber(): string
-    {
-        return $this->branchNumber;
-    }
-
-    public function getCocNumber(): string
-    {
-        return $this->cocNumber;
-    }
-
-    public function getRsin(): ?string
-    {
-        return $this->rsin;
-    }
-
-    public function getNonMailingIndicator(): bool
-    {
-        return $this->nonMailingIndicator;
-    }
-
-    public function getFormalDateOfRecord(): Carbon
-    {
-        return $this->formalDateOfRecord;
-    }
-
-    public function getMaterialRegistration(): Collection
-    {
-        return $this->materialRegistration;
-    }
-
-    public function getStatutoryName(): string
-    {
-        return $this->statutoryName;
-    }
-
-    public function getFirstTradeName(): string
-    {
-        return $this->firstTradeName;
-    }
-
-    public function getIsMainBranch(): bool
-    {
-        return $this->isMainBranch;
-    }
-
-    public function getIsCommercialBranch(): bool
-    {
-        return $this->isCommercialBranch;
-    }
-
-    public function getFulltimeEmployees(): int
-    {
-        return $this->fulltimeEmployees;
-    }
-
-    public function getParttimeEmployees(): int
-    {
-        return $this->parttimeEmployees;
-    }
-
-    public function getTotalEmployees(): int
-    {
-        return $this->totalEmployees;
-    }
-
-    /**
-     * @return Collection<TradeName>
-     */
-    public function getTradeNames(): Collection
-    {
-        return $this->tradeNames;
-    }
-
-    public function getAddresses(): Collection
-    {
-        return $this->addresses;
-    }
-
-    public function getWebsites(): Collection
-    {
-        return $this->websites;
-    }
-
-    public function getSbiActivities(): Collection
-    {
-        return $this->sbiActivities;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'branchNumber' => $this->branchNumber,
-            'cocNumber' => $this->cocNumber,
-            'rsin' => $this->rsin,
-            'nonMailingIndicator' => $this->nonMailingIndicator,
-            'formalDateOfRecord' => $this->formalDateOfRecord,
-            'materialRegistration' => $this->materialRegistration,
-            'statutoryName' => $this->statutoryName,
-            'firstTradeName' => $this->firstTradeName,
-            'isMainBranch' => $this->isMainBranch,
-            'isCommercialBranch' => $this->isCommercialBranch,
-            'fulltimeEmployees' => $this->fulltimeEmployees,
-            'parttimeEmployees' => $this->parttimeEmployees,
-            'totalEmployees' => $this->totalEmployees,
-            'tradeNames' => $this->tradeNames,
-            'addresses' => $this->addresses,
-            'websites' => $this->websites,
-            'sbiActivities' => $this->sbiActivities,
-        ];
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
     }
 
     /**

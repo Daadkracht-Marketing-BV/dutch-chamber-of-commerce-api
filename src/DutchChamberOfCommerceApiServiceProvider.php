@@ -2,7 +2,6 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi;
 
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Commands\DutchChamberOfCommerceApiCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,9 +16,6 @@ class DutchChamberOfCommerceApiServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('dutch-chamber-of-commerce-api')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_dutch-chamber-of-commerce-api_table')
-            ->hasCommand(DutchChamberOfCommerceApiCommand::class);
+            ->hasConfigFile();
     }
 }

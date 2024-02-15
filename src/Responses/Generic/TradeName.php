@@ -2,40 +2,17 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use JsonSerializable;
 
 class TradeName implements JsonSerializable
 {
-    public function __construct(protected string $name, protected int $order)
-    {
+    use SerializableResponse;
 
-    }
+    public function __construct(
+        public string $name,
+        public int $order
+    ) {
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getOrder(): int
-    {
-        return $this->order;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'name' => $this->name,
-            'order' => $this->order,
-        ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->serialize();
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
     }
 }

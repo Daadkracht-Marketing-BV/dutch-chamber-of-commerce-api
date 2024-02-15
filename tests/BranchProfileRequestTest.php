@@ -46,113 +46,113 @@ it('can parse a branch profile API response', function () {
     expect($response)
         ->toBeInstanceOf(class: BranchProfileResponse::class)
         ->and(
-            $response->getBranchNumber()
+            $response->branchNumber
         )->toBe('000022655646');
 });
 
 it('can parse the branch name in a branch profile API response', closure: function () {
     $response = performBranchRequest();
     /** @var Collection<TradeName> $tradeNames */
-    $tradeNames = $response->getTradeNames();
+    $tradeNames = $response->tradeNames;
     /** @var TradeName $firstTradeName */
     $firstTradeName = $tradeNames->first();
-    expect($firstTradeName)->toBeInstanceOf(class: TradeName::class)->and($firstTradeName->getName())->toBe('Daadkracht Marketing B.V.');
+    expect($firstTradeName)->toBeInstanceOf(class: TradeName::class)->and($firstTradeName->name)->toBe('Daadkracht Marketing B.V.');
 });
 
 it('can parse the branch address in a branch profile API response', closure: function () {
     $response = performBranchRequest();
     /** @var Address $address */
-    $address = $response->getAddresses()->first();
+    $address = $response->addresses->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getStreetName())->toBe('De Opgang');
+        ->and($address->streetName)->toBe('De Opgang');
 });
 
 it('can parse the branch postal code in a branch profile API response', closure: function () {
     $response = performBranchRequest();
     /** @var Address $address */
-    $address = $response->getAddresses()->first();
+    $address = $response->addresses->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getPostalCode())->toBe('9203GD');
+        ->and($address->postalCode)->toBe('9203GD');
 });
 
 it('can parse the branch city in a branch profile API response', closure: function () {
     $response = performBranchRequest();
     /** @var Address $address */
-    $address = $response->getAddresses()->first();
+    $address = $response->addresses->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getCity())->toBe('Drachten');
+        ->and($address->city)->toBe('Drachten');
 });
 
 it('can parse the branch country in a branch profile API response', closure: function () {
     $response = performBranchRequest();
     /** @var Address $address */
-    $address = $response->getAddresses()->first();
+    $address = $response->addresses->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getCountry())->toBe('Nederland');
+        ->and($address->country)->toBe('Nederland');
 });
 
 it('can parse the house number in a branch profile API response', closure: function () {
     $response = performBranchRequest();
     /** @var Address $address */
-    $address = $response->getAddresses()->first();
+    $address = $response->addresses->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getHouseNumber())->toBe('2');
+        ->and($address->houseNumber)->toBe('2');
 });
 
 it('can parse the house number addition in a branch profile API response', closure: function () {
     $response = performBranchRequest();
     /** @var Address $address */
-    $address = $response->getAddresses()->first();
+    $address = $response->addresses->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getHouseNumberAddition())->toBe('2');
+        ->and($address->houseNumberAddition)->toBe('2');
 });
 
 it('can parse the branch fulltime employees in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getFulltimeEmployees())->toBe(3);
+    expect($response->fulltimeEmployees)->toBe(3);
 });
 
 it('can parse the branch parttime employees in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getParttimeEmployees())->toBe(3);
+    expect($response->parttimeEmployees)->toBe(3);
 });
 
 it('can parse the branch total employees in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getTotalEmployees())->toBe(6);
+    expect($response->totalEmployees)->toBe(6);
 });
 
 it('can parse the branch statutory name in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getStatutoryName())->toBe('Daadkracht Marketing B.V.');
+    expect($response->statutoryName)->toBe('Daadkracht Marketing B.V.');
 });
 
 it('can parse the branch formal date of record in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getFormalDateOfRecord())->toBeInstanceOf(class: Carbon::class)->and(
-        $response->getFormalDateOfRecord()->format('Y-m-d')
+    expect($response->formalDateOfRecord)->toBeInstanceOf(class: Carbon::class)->and(
+        $response->formalDateOfRecord->format('Y-m-d')
     )->toBe('2015-06-18');
 });
 
 it('can parse the branch material registration in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getMaterialRegistration())->toBeInstanceOf(class: Collection::class)
-        ->and($response->getMaterialRegistration()->count())->toBe(1)
-        ->and($response->getMaterialRegistration()->first()['type'])->toBe('dateStart')
-        ->and($response->getMaterialRegistration()->first()['date']->format('Y-m-d'))->toBe('2011-05-18');
+    expect($response->materialRegistration)->toBeInstanceOf(class: Collection::class)
+        ->and($response->materialRegistration->count())->toBe(1)
+        ->and($response->materialRegistration->first()['type'])->toBe('dateStart')
+        ->and($response->materialRegistration->first()['date']->format('Y-m-d'))->toBe('2011-05-18');
 });
 
 it('can parse the branch is main branch in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getIsMainBranch())->toBe(true);
+    expect($response->isMainBranch)->toBe(true);
 });
 
 it('can parse the branch is commercial branch in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getIsCommercialBranch())->toBe(true);
+    expect($response->isCommercialBranch)->toBe(true);
 });
 
 it('can parse the branch trade names in a branch profile API response', closure: function () {
     $response = performBranchRequest();
-    expect($response->getFirstTradeName())->toBe('Daadkracht Marketing B.V.');
+    expect($response->firstTradeName)->toBe('Daadkracht Marketing B.V.');
 });
