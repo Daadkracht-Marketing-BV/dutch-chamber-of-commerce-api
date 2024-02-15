@@ -8,8 +8,9 @@ use JsonSerializable;
 
 class SearchResponse extends ApiResponse implements JsonSerializable
 {
-    public function __construct(protected Collection $results)
-    {
+    public function __construct(
+        public Collection $results
+    ) {
     }
 
     public static function fromResponse(array $response): self
@@ -21,27 +22,13 @@ class SearchResponse extends ApiResponse implements JsonSerializable
         return new self(results: $results);
     }
 
-    public function getResults(): Collection
-    {
-        return $this->results;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'results' => $this->results->map(function ($result) {
-                return $result->serialize();
-            })->toArray(),
-        ];
-    }
-
     public function jsonSerialize(): array
     {
-        return $this->serialize();
+        return get_object_vars($this);
     }
 
-    public function __serialize(): array
+    public function __toString(): string
     {
-        return $this->serialize();
+        return json_encode($this->jsonSerialize());
     }
 }
