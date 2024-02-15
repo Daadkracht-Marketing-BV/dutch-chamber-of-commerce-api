@@ -2,6 +2,7 @@
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
 use Illuminate\Support\Facades\Http;
 
 function performBaseProfileRequest(): BaseProfileResponse
@@ -36,7 +37,15 @@ it('can parse a base profile API response', function () {
 it('can parse the trade names in a base profile API response', function () {
     $response = performBaseProfileRequest();
     $tradeNames = $response->getTradeNames();
-    expect($tradeNames->count())->toBe(1);
+
+    /** @var TradeName $firstTradeName */
+    $firstTradeName = $tradeNames->first();
+    expect($tradeNames->count())->toBe(1)->and(
+        $firstTradeName->getName()
+    )->toBe('Daadkracht Marketing B.V.')
+    ->and(
+        $firstTradeName->getOrder()
+    )->toBe(0);
 });
 
 it('can parse the non mailing indicator in a base profile API response', function () {
