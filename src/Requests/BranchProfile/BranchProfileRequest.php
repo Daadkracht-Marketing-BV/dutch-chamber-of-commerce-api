@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BranchProfile;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BranchProfile\BranchProfileResponse;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -58,6 +59,10 @@ class BranchProfileRequest extends ApiRequest
         ])->get($this->getApiEndpoint().'/'.$this->branchNumber);
     }
 
+    /**
+     * @throws ApiException
+     * @throws UnexpectedResponseException
+     */
     public function fetch(): BranchProfileResponse
     {
         $response = $this->getResponse();

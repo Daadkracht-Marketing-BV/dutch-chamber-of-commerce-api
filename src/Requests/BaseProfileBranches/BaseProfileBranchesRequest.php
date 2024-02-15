@@ -57,6 +57,9 @@ class BaseProfileBranchesRequest extends ApiRequest
         return '/'.$this->cocNumber.'/vestigingen';
     }
 
+    /**
+     * @throws ApiException
+     */
     public function fetch(): BaseProfileBranchesResponse
     {
         $response = $this->getResponse();
