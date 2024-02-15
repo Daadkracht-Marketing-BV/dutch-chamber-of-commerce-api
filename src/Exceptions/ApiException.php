@@ -2,9 +2,11 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions;
 
+use Throwable;
+
 class ApiException extends BaseException
 {
-    public function __construct(string $message, string $code = '', ?\Throwable $previous = null)
+    public function __construct(string $message, string $code = '', ?Throwable $previous = null)
     {
         parent::__construct($message, 0, $previous);
 

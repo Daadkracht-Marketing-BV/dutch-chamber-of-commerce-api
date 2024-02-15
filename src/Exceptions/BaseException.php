@@ -2,6 +2,8 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions;
 
-class BaseException extends \Exception
+use Exception;
+
+class BaseException extends Exception
 {
 }
