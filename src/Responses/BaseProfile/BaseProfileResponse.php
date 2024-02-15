@@ -6,6 +6,7 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseE
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
@@ -13,6 +14,8 @@ use JsonSerializable;
 
 class BaseProfileResponse extends ApiResponse implements JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
         public string     $cocNumber,
         public bool       $nonMailingIndicator,
@@ -82,18 +85,5 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         }
 
         return $value === 'Ja';
-    }
-
-    public function __toString(): string
-    {
-        // get our public properties
-        $properties = get_object_vars($this);
-
-        return json_encode($properties);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return json_decode($this->__toString(), true);
     }
 }
