@@ -64,7 +64,7 @@ it('can parse the branch number in a base profile branches API response', functi
     $branches = $response->getBranches();
     /** @var Branch $firstBranch */
     $firstBranch = $branches->first();
-    expect($firstBranch->getBranchNumber())->toBe('000022655646');
+    expect($firstBranch->branchNumber)->toBe('000022655646');
 });
 
 it('can parse the branch name in a base profile branches API response', function () {
@@ -73,7 +73,7 @@ it('can parse the branch name in a base profile branches API response', function
     $branches = $response->getBranches();
     /** @var Branch $firstBranch */
     $firstBranch = $branches->first();
-    expect($firstBranch->getFirstTradeName())->toBe('Daadkracht Marketing B.V.');
+    expect($firstBranch->firstTradeName)->toBe('Daadkracht Marketing B.V.');
 });
 
 it('can parse the branch is main branch in a base profile branches API response', function () {
@@ -82,7 +82,7 @@ it('can parse the branch is main branch in a base profile branches API response'
     $branches = $response->getBranches();
     /** @var Branch $firstBranch */
     $firstBranch = $branches->first();
-    expect($firstBranch->getIsMainBranch())->toBe(true);
+    expect($firstBranch->isMainBranch)->toBe(true);
 });
 
 it('can parse the branch is commercial branch in a base profile branches API response', function () {
@@ -91,5 +91,5 @@ it('can parse the branch is commercial branch in a base profile branches API res
     $branches = $response->getBranches();
     /** @var Branch $firstBranch */
     $firstBranch = $branches->first();
-    expect($firstBranch->getIsCommercialBranch())->toBe(true);
+    expect($firstBranch->isCommercialBranch)->toBe(true);
 });
