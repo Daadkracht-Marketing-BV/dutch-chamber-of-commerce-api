@@ -11,8 +11,9 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
+use JsonSerializable;
 
-class BranchProfileResponse extends ApiResponse implements \JsonSerializable
+class BranchProfileResponse extends ApiResponse implements JsonSerializable
 {
     use SerializableResponse;
 
