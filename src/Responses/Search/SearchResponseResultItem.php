@@ -9,15 +9,14 @@ use JsonSerializable;
 class SearchResponseResultItem implements JsonSerializable
 {
     public function __construct(
-        protected string     $cocNumber,
-        protected ?string    $rsin,
-        protected ?string    $branchNumber,
-        protected string     $name,
+        protected string $cocNumber,
+        protected ?string $rsin,
+        protected ?string $branchNumber,
+        protected string $name,
         protected Collection $addresses,
-        protected string     $type,
-        protected bool       $active
-    )
-    {
+        protected string $type,
+        protected bool $active
+    ) {
     }
 
     /**
@@ -35,7 +34,7 @@ class SearchResponseResultItem implements JsonSerializable
         $items = [];
 
         foreach ($responseMap as $apiField => $property) {
-            if (!isset($responseData[$apiField])) {
+            if (! isset($responseData[$apiField])) {
                 continue;
             }
 
@@ -63,7 +62,7 @@ class SearchResponseResultItem implements JsonSerializable
                 } else {
                     return new ForeignAddress(
                         $address['straat'],
-                        $address['postcode'] . ' ' . $address['plaats'],
+                        $address['postcode'].' '.$address['plaats'],
                         $address['land']
                     );
                 }
@@ -128,7 +127,7 @@ class SearchResponseResultItem implements JsonSerializable
      */
     public static function yesNoToBool($value): bool
     {
-        if (!in_array($value, ['Ja', 'Nee'])) {
+        if (! in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException("Unexpected value for Ja/Nee field: $value");
         }
 

@@ -55,6 +55,7 @@ class Branch implements JsonSerializable
 
         return $branchProfileRequest;
     }
+
     public function serialize(): array
     {
         return [

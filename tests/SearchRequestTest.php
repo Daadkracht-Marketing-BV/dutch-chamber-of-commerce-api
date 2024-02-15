@@ -74,9 +74,6 @@ it('correctly sets a boolean value formatted for the kvk api', function () {
     )->toBe('InclusiefInactieveRegistraties=false', 'InclusiefInactieveRegistraties should be false');
 });
 
-/**
- * @return \DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse
- */
 function performBasicSearch(): \DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse
 {
     $request = new SearchRequest();
@@ -93,6 +90,7 @@ function performBasicSearch(): \DaadkrachtMarketing\DutchChamberOfCommerceApi\Re
     ]);
 
     $response = $request->fetch();
+
     return $response;
 }
 

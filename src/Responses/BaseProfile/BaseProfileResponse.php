@@ -139,7 +139,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
             'statutoryName' => $this->statutoryName,
             'tradeNames' => $this->tradeNames,
             'sbiActivities' => $this->sbiActivities,
-            '_embedded' => $this->_embedded
+            '_embedded' => $this->_embedded,
         ];
     }
 
