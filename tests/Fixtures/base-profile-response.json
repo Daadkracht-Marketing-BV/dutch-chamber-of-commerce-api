@@ -1,0 +1,97 @@
+{
+    "kvkNummer": "63546167",
+    "indNonMailing": "Ja",
+    "naam": "Daadkracht Marketing B.V.",
+    "formeleRegistratiedatum": "20150618",
+    "materieleRegistratie": {
+        "datumAanvang": "20150617"
+    },
+    "totaalWerkzamePersonen": 6,
+    "statutaireNaam": "Daadkracht Marketing B.V.",
+    "handelsnamen": [
+        {
+            "naam": "Daadkracht Marketing B.V.",
+            "volgorde": 0
+        }
+    ],
+    "sbiActiviteiten": [
+        {
+            "sbiCode": "7320",
+            "sbiOmschrijving": "Markt- en opinieonderzoekbureaus",
+            "indHoofdactiviteit": "Ja"
+        }
+    ],
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+        },
+        {
+            "rel": "vestigingen",
+            "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167/vestigingen"
+        }
+    ],
+    "_embedded": {
+        "hoofdvestiging": {
+            "vestigingsnummer": "000022655646",
+            "kvkNummer": "63546167",
+            "formeleRegistratiedatum": "20150618",
+            "materieleRegistratie": {
+                "datumAanvang": "20110518"
+            },
+            "eersteHandelsnaam": "Daadkracht Marketing B.V.",
+            "indHoofdvestiging": "Ja",
+            "indCommercieleVestiging": "Ja",
+            "totaalWerkzamePersonen": 6,
+            "adressen": [
+                {
+                    "type": "bezoekadres",
+                    "indAfgeschermd": "Nee",
+                    "volledigAdres": "De Opgang 2 2 9203GD Drachten",
+                    "straatnaam": "De Opgang",
+                    "huisnummer": 2,
+                    "huisnummerToevoeging": "2",
+                    "postcode": "9203GD",
+                    "plaats": "Drachten",
+                    "land": "Nederland"
+                }
+            ],
+            "websites": [
+                "www.daadkracht-marketing.nl"
+            ],
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167/hoofdvestiging"
+                },
+                {
+                    "rel": "vestigingen",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167/vestigingen"
+                },
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        "eigenaar": {
+            "rsin": "855284833",
+            "rechtsvorm": "Besloten Vennootschap",
+            "uitgebreideRechtsvorm": "Besloten Vennootschap",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167/eigenaar"
+                },
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                }
+            ]
+        }
+    }
+}
