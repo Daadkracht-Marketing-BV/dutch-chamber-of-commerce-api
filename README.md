@@ -5,15 +5,19 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/daadkracht-marketing-bv/dutch-chamber-of-commerce-api/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/daadkracht-marketing-bv/dutch-chamber-of-commerce-api/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/daadkracht-marketing-bv/dutch-chamber-of-commerce-api.svg?style=flat-square)](https://packagist.org/packages/daadkracht-marketing-bv/dutch-chamber-of-commerce-api)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This package provides a simple way to interact with the Dutch Chamber of Commerce API (KVK).
 
-## Support us
+## Requirements
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/dutch-chamber-of-commerce-api.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/dutch-chamber-of-commerce-api)
+You need to have a valid API key from the Dutch Chamber of Commerce. You can request one [here](https://developers.kvk.nl/).
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+## Features
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+- Search for companies by name, address, postal code, city, and more
+- Fetch the base profile of a company by its Chamber of Commerce number
+- Fetch the branches of a company by its Chamber of Commerce number
+- Fetch the profile of a branch by its branch number
+- Requests are chainable
 
 ## Installation
 
@@ -23,37 +27,30 @@ You can install the package via composer:
 composer require daadkracht-marketing-bv/dutch-chamber-of-commerce-api
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="dutch-chamber-of-commerce-api-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="dutch-chamber-of-commerce-api-config"
 ```
 
-This is the contents of the published config file:
+These are the contents of the published config file:
 
 ```php
 return [
+    'api_key' => env('DUTCH_CHAMBER_OF_COMMERCE_API_KEY', ''),
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="dutch-chamber-of-commerce-api-views"
 ```
 
 ## Usage
 
 ```php
 $dutchChamberOfCommerceApi = new DaadkrachtMarketing\DutchChamberOfCommerceApi();
-echo $dutchChamberOfCommerceApi->echoPhrase('Hello, DaadkrachtMarketing!');
+
+// try one of these
+dd($dutchChamberOfCommerceApi->searchRequest()->cocNumber('12345678')->fetch());
+dd($dutchChamberOfCommerceApi->baseProfileRequest()->cocNumber('12345678')->fetch());
+dd($dutchChamberOfCommerceApi->baseProfileBranchesRequest()->cocNumber('12345678')->fetch());
+dd($dutchChamberOfCommerceApi->branchProfileRequest()->branchNumber('12345678')->fetch());
 ```
 
 ## Testing
