@@ -28,4 +28,9 @@ class Branch implements JsonSerializable
 
         return $branchProfileRequest;
     }
+
+    public function createBranchProfileRequest($testMode = false): BranchProfileRequest
+    {
+        return $this->createFullBranchProfileRequest($testMode);
+    }
 }
