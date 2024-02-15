@@ -148,6 +148,9 @@ class SearchRequest extends ApiRequest
         return $this->testMode ? $this->testEndpoint : $this->liveEndpoint;
     }
 
+    /**
+     * @throws ApiException
+     */
     public function fetch(): SearchResponse
     {
         $apiKey = config('dutch-chamber-of-commerce-api.api_key');
