@@ -78,13 +78,13 @@ it('can parse the SBI activities in a base profile API response', function () {
     $firstSbiActivity = $sbiActivities->first();
     expect($sbiActivities->count())->toBe(1)
         ->and(
-            $firstSbiActivity->getSbiCode()
+            $firstSbiActivity->sbiCode
         )->toBe('7320')
         ->and(
-            $firstSbiActivity->getSbiDescription()
+            $firstSbiActivity->sbiDescription
         )->toBe('Markt- en opinieonderzoekbureaus')
         ->and(
-            $firstSbiActivity->getIsMainActivity()
+            $firstSbiActivity->isMainActivity
         )->toBe(true);
 });
 

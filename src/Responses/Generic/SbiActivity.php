@@ -6,42 +6,24 @@ use JsonSerializable;
 
 class SbiActivity implements JsonSerializable
 {
-    public function __construct(protected string $sbiCode, protected string $sbiDescription, protected bool $isMainActivity)
-    {
+    public function __construct(
+        public string $sbiCode,
+        public string $sbiDescription,
+        public bool $isMainActivity
+    ) {
 
     }
 
-    public function getSbiCode(): string
+    public function __toString(): string
     {
-        return $this->sbiCode;
+        // get public properties
+        $properties = get_object_vars($this);
+
+        return json_encode($properties);
     }
 
-    public function getSbiDescription(): string
+    public function jsonSerialize(): mixed
     {
-        return $this->sbiDescription;
-    }
-
-    public function getIsMainActivity(): bool
-    {
-        return $this->isMainActivity;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'sbiCode' => $this->sbiCode,
-            'sbiDescription' => $this->sbiDescription,
-            'isMainActivity' => $this->isMainActivity,
-        ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->serialize();
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
+        return json_decode($this->__toString(), true);
     }
 }
