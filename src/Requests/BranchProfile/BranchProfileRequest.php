@@ -52,7 +52,7 @@ class BranchProfileRequest extends ApiRequest
 
         return Http::withOptions(
             [
-                'verify' => false,
+                'verify' => dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'dist' . DIRECTORY_SEPARATOR . 'cacert.pem',
             ]
         )->withHeaders([
             'apikey' => $apiKey,

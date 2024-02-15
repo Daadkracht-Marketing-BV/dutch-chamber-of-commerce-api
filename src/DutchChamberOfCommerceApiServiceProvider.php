@@ -17,7 +17,6 @@ class DutchChamberOfCommerceApiServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('dutch-chamber-of-commerce-api')
-            ->hasConfigFile()
-            ->hasAssets();
+            ->hasConfigFile();
     }
 }
