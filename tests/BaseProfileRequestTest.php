@@ -38,3 +38,8 @@ it('can parse the trade names in a base profile API response', function () {
     $tradeNames = $response->getTradeNames();
     expect($tradeNames->count())->toBe(1);
 });
+
+it('can parse the non mailing indicator in a base profile API response', function () {
+    $response = performBaseProfileRequest();
+    expect($response->getNonMailingIndicator())->toBe(true);
+});
