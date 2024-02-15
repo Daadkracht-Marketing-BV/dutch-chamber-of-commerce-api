@@ -14,16 +14,17 @@ use JsonSerializable;
 class BaseProfileResponse extends ApiResponse implements JsonSerializable
 {
     public function __construct(
-        protected string $cocNumber,
-        protected bool $nonMailingIndicator,
-        protected string $name,
-        protected Carbon $formalDateOfRecord,
-        protected int $totalNumberOfEmployees,
-        protected string $statutoryName,
-        protected Collection $tradeNames,
-        protected Collection $sbiActivities,
-        protected array $_embedded
-    ) {
+        public string     $cocNumber,
+        public bool       $nonMailingIndicator,
+        public string     $name,
+        public Carbon     $formalDateOfRecord,
+        public int        $totalNumberOfEmployees,
+        public string     $statutoryName,
+        public Collection $tradeNames,
+        public Collection $sbiActivities,
+        public array      $_embedded
+    )
+    {
 
     }
 
@@ -42,13 +43,13 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         $statutoryName = $responseData['statutaireNaam'];
         $tradeNames = collect($responseData['handelsnamen'])
             ->map(
-                fn ($tradename) => new TradeName(
+                fn($tradename) => new TradeName(
                     $tradename['naam'],
                     $tradename['volgorde']
                 ));
         $sbiActivities = collect($responseData['sbiActiviteiten'])
             ->map(
-                fn ($sbiActivity) => new SbiActivity(
+                fn($sbiActivity) => new SbiActivity(
                     $sbiActivity['sbiCode'],
                     $sbiActivity['sbiOmschrijving'],
                     static::yesNoToBool($sbiActivity['indHoofdactiviteit'])
@@ -74,7 +75,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
      */
     protected static function yesNoToBool($value): bool
     {
-        if (! in_array($value, ['Ja', 'Nee'])) {
+        if (!in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException(
                 sprintf('Unexpected value for Ja/Nee field: %s', $value)
             );
@@ -83,73 +84,16 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         return $value === 'Ja';
     }
 
-    public function getCocNumber(): string
+    public function __toString(): string
     {
-        return $this->cocNumber;
-    }
+        // get our public properties
+        $properties = get_object_vars($this);
 
-    public function getNonMailingIndicator(): bool
-    {
-        return $this->nonMailingIndicator;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getFormalDateOfRecord(): string
-    {
-        return $this->formalDateOfRecord;
-    }
-
-    public function getTotalNumberOfEmployees(): int
-    {
-        return $this->totalNumberOfEmployees;
-    }
-
-    public function getStatutoryName(): string
-    {
-        return $this->statutoryName;
-    }
-
-    public function getTradeNames(): Collection
-    {
-        return $this->tradeNames;
-    }
-
-    public function getSbiActivities(): Collection
-    {
-        return $this->sbiActivities;
-    }
-
-    public function getEmbedded(): array
-    {
-        return $this->_embedded;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'cocNumber' => $this->cocNumber,
-            'nonMailingIndicator' => $this->nonMailingIndicator,
-            'name' => $this->name,
-            'formalDateOfRecord' => $this->formalDateOfRecord,
-            'totalNumberOfEmployees' => $this->totalNumberOfEmployees,
-            'statutoryName' => $this->statutoryName,
-            'tradeNames' => $this->tradeNames,
-            'sbiActivities' => $this->sbiActivities,
-            '_embedded' => $this->_embedded,
-        ];
+        return json_encode($properties);
     }
 
     public function jsonSerialize(): array
     {
-        return $this->serialize();
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
+        return json_decode($this->__toString(), true);
     }
 }
