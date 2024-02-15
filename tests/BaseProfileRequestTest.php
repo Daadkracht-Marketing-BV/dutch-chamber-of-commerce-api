@@ -32,3 +32,9 @@ it('can parse a base profile API response', function () {
             $response->getCocNumber()
         )->toBe('63546167');
 });
+
+it('can parse the trade names in a base profile API response', function () {
+    $response = performBaseProfileRequest();
+    $tradeNames = $response->getTradeNames();
+    expect($tradeNames->count())->toBe(1);
+});
