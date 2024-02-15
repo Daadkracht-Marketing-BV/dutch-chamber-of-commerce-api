@@ -1,11 +1,17 @@
 <?php
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
 use Illuminate\Support\Facades\Http;
 
+/**
+ * @throws ApiException
+ * @throws UnexpectedResponseException
+ */
 function performBaseProfileRequest(): BaseProfileResponse
 {
     Http::preventStrayRequests();
