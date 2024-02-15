@@ -162,7 +162,7 @@ class SearchRequest extends ApiRequest
                 'verify' => false,
             ]
         )
-            ->withHeader('apikey', $apiKey)
+            ->withHeaders(['apikey' => $apiKey])
             ->get(
                 url: $this->getApiEndpoint(),
                 query: $this->getQueryString()

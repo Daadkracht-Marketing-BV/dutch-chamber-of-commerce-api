@@ -87,7 +87,7 @@ class BaseProfileRequest extends ApiRequest
                 'verify' => false,
             ]
         )
-            ->withHeader('apikey', $apiKey)
+            ->withHeaders(['apikey' => $apiKey])
             ->get(
                 url: $this->getApiEndpoint().'/'.$this->getSubRequest(),
                 query: $this->getQueryString()
