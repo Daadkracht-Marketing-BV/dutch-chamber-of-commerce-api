@@ -2,6 +2,7 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
@@ -23,5 +24,10 @@ class SearchResponse extends ApiResponse implements JsonSerializable
         });
 
         return new self(results: $results);
+    }
+
+    public function createBaseProfileRequest($cocNumber): BaseProfileRequest
+    {
+        return (new BaseProfileRequest())->cocNumber($cocNumber);
     }
 }
