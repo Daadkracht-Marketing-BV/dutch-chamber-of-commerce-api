@@ -2,10 +2,13 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use JsonSerializable;
 
 class DomesticAddress implements JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
         public string $streetName,
         public ?string $houseNumber,
@@ -14,15 +17,5 @@ class DomesticAddress implements JsonSerializable
         public ?string $postalCode,
         public string $city
     ) {
-    }
-
-    public function jsonSerialize(): array
-    {
-        return get_object_vars($this);
-    }
-
-    public function __toString(): string
-    {
-        return json_encode($this->jsonSerialize());
     }
 }

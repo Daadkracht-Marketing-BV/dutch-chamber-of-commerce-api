@@ -2,11 +2,14 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic;
 
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use JsonSerializable;
 
 class Address implements JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
         public string $type,
         public ?bool $isShielded,
@@ -44,15 +47,5 @@ class Address implements JsonSerializable
             region: $responseData['region'] ?? null,
             geoData: $responseData['geoData'] ? collect($responseData['geoData']) : null,
         );
-    }
-
-    public function jsonSerialize(): array
-    {
-        return get_object_vars($this);
-    }
-
-    public function __toString(): string
-    {
-        return json_encode($this->jsonSerialize());
     }
 }

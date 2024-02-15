@@ -3,11 +3,14 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use JsonSerializable;
 
 class SearchResponseResultItem implements JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
         public string $cocNumber,
         public ?string $rsin,
@@ -82,15 +85,5 @@ class SearchResponseResultItem implements JsonSerializable
         }
 
         return $value === 'Ja';
-    }
-
-    public function jsonSerialize(): array
-    {
-        return get_object_vars($this);
-    }
-
-    public function __toString(): string
-    {
-        return json_encode($this->jsonSerialize());
     }
 }

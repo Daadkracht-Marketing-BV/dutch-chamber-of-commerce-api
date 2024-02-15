@@ -8,11 +8,14 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\Address;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 
-class BranchProfileResponse extends ApiResponse
+class BranchProfileResponse extends ApiResponse implements \JsonSerializable
 {
+    use SerializableResponse;
+
     public function __construct(
         public string $branchNumber,
         public string $cocNumber,
