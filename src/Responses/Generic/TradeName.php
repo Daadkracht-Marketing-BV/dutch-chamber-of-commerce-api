@@ -6,36 +6,20 @@ use JsonSerializable;
 
 class TradeName implements JsonSerializable
 {
-    public function __construct(protected string $name, protected int $order)
-    {
+    public function __construct(
+        public string $name,
+        public int $order
+    ) {
 
     }
 
-    public function getName(): string
+    public function jsonSerialize(): string
     {
-        return $this->name;
+        return json_encode(get_object_vars($this));
     }
 
-    public function getOrder(): int
+    public function __toString(): string
     {
-        return $this->order;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'name' => $this->name,
-            'order' => $this->order,
-        ];
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->serialize();
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
+        return $this->jsonSerialize();
     }
 }
