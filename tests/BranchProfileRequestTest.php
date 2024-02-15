@@ -32,13 +32,11 @@ function performBranchRequest(): BranchProfileResponse
 
     Http::preventStrayRequests();
 
-    $response = $request->fetch();
-
-    return $response;
+    return $request->fetch();
 }
 
 it('can set the branch number', function () {
-    $response = performBranchRequest();
+    performBranchRequest();
 
     Http::assertSent(
         fn (Request $request) => $request->url() === 'https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646'
