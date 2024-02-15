@@ -49,4 +49,7 @@ it('can parse the statutory name in a base profile API response', function () {
     expect($response->getStatutoryName())->toBe('Daadkracht Marketing B.V.');
 });
 
-
+it('can parse the total number of employees in a base profile API response', function () {
+    $response = performBaseProfileRequest();
+    expect($response->getTotalNumberOfEmployees())->toBe(6);
+});
