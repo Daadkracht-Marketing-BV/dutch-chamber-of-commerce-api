@@ -25,9 +25,4 @@ class SearchResponse extends ApiResponse implements JsonSerializable
 
         return new self(results: $results);
     }
-
-    public function createBaseProfileRequest($cocNumber): BaseProfileRequest
-    {
-        return (new BaseProfileRequest())->cocNumber($cocNumber);
-    }
 }
