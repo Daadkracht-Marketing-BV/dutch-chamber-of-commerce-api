@@ -2,7 +2,6 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
-use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
