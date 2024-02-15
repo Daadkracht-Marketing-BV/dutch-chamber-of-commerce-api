@@ -48,3 +48,5 @@ it('can parse the statutory name in a base profile API response', function () {
     $response = performBaseProfileRequest();
     expect($response->getStatutoryName())->toBe('Daadkracht Marketing B.V.');
 });
+
+
