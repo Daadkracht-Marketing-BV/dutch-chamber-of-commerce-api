@@ -2,6 +2,7 @@
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
 use Illuminate\Support\Facades\Http;
 
@@ -61,4 +62,22 @@ it('can parse the statutory name in a base profile API response', function () {
 it('can parse the total number of employees in a base profile API response', function () {
     $response = performBaseProfileRequest();
     expect($response->getTotalNumberOfEmployees())->toBe(6);
+});
+
+it('can parse the SBI activities in a base profile API response', function () {
+    $response = performBaseProfileRequest();
+    $sbiActivities = $response->getSbiActivities();
+
+    /** @var SbiActivity $firstSbiActivity */
+    $firstSbiActivity = $sbiActivities->first();
+    expect($sbiActivities->count())->toBe(1)
+    ->and(
+        $firstSbiActivity->getSbiCode()
+    )->toBe('7320')
+    ->and(
+        $firstSbiActivity->getSbiDescription()
+    )->toBe('Markt- en opinieonderzoekbureaus')
+    ->and(
+        $firstSbiActivity->getIsMainActivity()
+    )->toBe(true);
 });
