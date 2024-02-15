@@ -46,16 +46,13 @@ class Address implements JsonSerializable
         );
     }
 
-    public function __toString(): string
-    {
-        // get public properties
-        $properties = get_object_vars($this);
-
-        return json_encode($properties);
-    }
-
     public function jsonSerialize(): array
     {
-        return json_decode($this->__toString(), true);
+        return get_object_vars($this);
+    }
+
+    public function __toString(): string
+    {
+        return json_encode($this->jsonSerialize());
     }
 }

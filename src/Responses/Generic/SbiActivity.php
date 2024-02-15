@@ -14,16 +14,13 @@ class SbiActivity implements JsonSerializable
 
     }
 
-    public function __toString(): string
+    public function jsonSerialize(): array
     {
-        // get public properties
-        $properties = get_object_vars($this);
-
-        return json_encode($properties);
+        return get_object_vars($this);
     }
 
-    public function jsonSerialize(): mixed
+    public function __toString(): string
     {
-        return json_decode($this->__toString(), true);
+        return json_encode($this->jsonSerialize());
     }
 }

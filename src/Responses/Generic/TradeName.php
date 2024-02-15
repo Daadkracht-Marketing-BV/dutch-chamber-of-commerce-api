@@ -13,13 +13,13 @@ class TradeName implements JsonSerializable
 
     }
 
-    public function jsonSerialize(): string
+    public function jsonSerialize(): array
     {
-        return json_encode(get_object_vars($this));
+        return get_object_vars($this);
     }
 
     public function __toString(): string
     {
-        return $this->jsonSerialize();
+        return json_encode($this->jsonSerialize());
     }
 }

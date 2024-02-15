@@ -28,14 +28,11 @@ class Branch implements JsonSerializable
 
     public function __toString(): string
     {
-        // get public properties
-        $properties = get_object_vars($this);
-
-        return json_encode($properties);
+        return json_encode($this->jsonSerialize());
     }
 
     public function jsonSerialize(): array
     {
-        return json_decode($this->__toString());
+        return get_object_vars($this);
     }
 }
