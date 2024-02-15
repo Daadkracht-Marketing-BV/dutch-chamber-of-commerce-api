@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile\BaseProfileRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits\SerializableResponse;
 use Illuminate\Support\Collection;
 use JsonSerializable;
@@ -85,5 +86,10 @@ class SearchResponseResultItem implements JsonSerializable
         }
 
         return $value === 'Ja';
+    }
+
+    public function createBaseProfileRequest(): BaseProfileRequest
+    {
+        return (new BaseProfileRequest())->cocNumber($this->cocNumber);
     }
 }
