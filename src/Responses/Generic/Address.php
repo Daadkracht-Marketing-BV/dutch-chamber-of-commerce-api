@@ -8,20 +8,20 @@ use JsonSerializable;
 class Address implements JsonSerializable
 {
     public function __construct(
-        protected string $type,
-        protected ?bool $isShielded,
-        protected ?string $fullAddress,
-        protected ?string $streetName,
-        protected ?string $houseNumber,
-        protected ?string $houseNumberAddition,
-        protected ?string $houseLetter,
-        protected ?string $addressSupplement,
-        protected ?string $postalCode,
-        protected ?int $poBox,
-        protected ?string $city,
-        protected ?string $country,
-        protected ?string $region,
-        protected ?Collection $geoData,
+        public string $type,
+        public ?bool $isShielded,
+        public ?string $fullAddress,
+        public ?string $streetName,
+        public ?string $houseNumber,
+        public ?string $houseNumberAddition,
+        public ?string $houseLetter,
+        public ?string $addressSupplement,
+        public ?string $postalCode,
+        public ?int $poBox,
+        public ?string $city,
+        public ?string $country,
+        public ?string $region,
+        public ?Collection $geoData,
     ) {
 
     }
@@ -46,103 +46,16 @@ class Address implements JsonSerializable
         );
     }
 
-    public function getType(): string
+    public function __toString(): string
     {
-        return $this->type;
-    }
+        // get public properties
+        $properties = get_object_vars($this);
 
-    public function getIsShielded(): ?bool
-    {
-        return $this->isShielded;
-    }
-
-    public function getFullAddress(): ?string
-    {
-        return $this->fullAddress;
-    }
-
-    public function getStreetName(): ?string
-    {
-        return $this->streetName;
-    }
-
-    public function getHouseNumber(): ?string
-    {
-        return $this->houseNumber;
-    }
-
-    public function getHouseNumberAddition(): ?string
-    {
-        return $this->houseNumberAddition;
-    }
-
-    public function getHouseLetter(): ?string
-    {
-        return $this->houseLetter;
-    }
-
-    public function getAddressSupplement(): ?string
-    {
-        return $this->addressSupplement;
-    }
-
-    public function getPostalCode(): ?string
-    {
-        return $this->postalCode;
-    }
-
-    public function getPoBox(): ?int
-    {
-        return $this->poBox;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function getRegion(): ?string
-    {
-        return $this->region;
-    }
-
-    public function getGeoData(): ?Collection
-    {
-        return $this->geoData;
-    }
-
-    public function serialize(): array
-    {
-        return [
-            'type' => $this->type,
-            'isShielded' => $this->isShielded,
-            'fullAddress' => $this->fullAddress,
-            'streetName' => $this->streetName,
-            'houseNumber' => $this->houseNumber,
-            'houseNumberAddition' => $this->houseNumberAddition,
-            'houseLetter' => $this->houseLetter,
-            'addressSupplement' => $this->addressSupplement,
-            'postalCode' => $this->postalCode,
-            'poBox' => $this->poBox,
-            'city' => $this->city,
-            'country' => $this->country,
-            'region' => $this->region,
-            'geoData' => $this->geoData?->map(fn ($geoData) => $geoData->toArray())->toArray(),
-        ];
-    }
-
-    public function __serialize(): array
-    {
-        return $this->serialize();
+        return json_encode($properties);
     }
 
     public function jsonSerialize(): array
     {
-        return $this->serialize();
+        return json_decode($this->__toString(), true);
     }
 }

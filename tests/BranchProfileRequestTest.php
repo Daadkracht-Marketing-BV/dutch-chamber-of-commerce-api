@@ -64,7 +64,7 @@ it('can parse the branch address in a branch profile API response', closure: fun
     /** @var Address $address */
     $address = $response->getAddresses()->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getStreetName())->toBe('De Opgang');
+        ->and($address->streetName)->toBe('De Opgang');
 });
 
 it('can parse the branch postal code in a branch profile API response', closure: function () {
@@ -72,7 +72,7 @@ it('can parse the branch postal code in a branch profile API response', closure:
     /** @var Address $address */
     $address = $response->getAddresses()->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getPostalCode())->toBe('9203GD');
+        ->and($address->postalCode)->toBe('9203GD');
 });
 
 it('can parse the branch city in a branch profile API response', closure: function () {
@@ -80,7 +80,7 @@ it('can parse the branch city in a branch profile API response', closure: functi
     /** @var Address $address */
     $address = $response->getAddresses()->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getCity())->toBe('Drachten');
+        ->and($address->city)->toBe('Drachten');
 });
 
 it('can parse the branch country in a branch profile API response', closure: function () {
@@ -88,7 +88,7 @@ it('can parse the branch country in a branch profile API response', closure: fun
     /** @var Address $address */
     $address = $response->getAddresses()->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getCountry())->toBe('Nederland');
+        ->and($address->country)->toBe('Nederland');
 });
 
 it('can parse the house number in a branch profile API response', closure: function () {
@@ -96,7 +96,7 @@ it('can parse the house number in a branch profile API response', closure: funct
     /** @var Address $address */
     $address = $response->getAddresses()->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getHouseNumber())->toBe('2');
+        ->and($address->houseNumber)->toBe('2');
 });
 
 it('can parse the house number addition in a branch profile API response', closure: function () {
@@ -104,7 +104,7 @@ it('can parse the house number addition in a branch profile API response', closu
     /** @var Address $address */
     $address = $response->getAddresses()->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->getHouseNumberAddition())->toBe('2');
+        ->and($address->houseNumberAddition)->toBe('2');
 });
 
 it('can parse the branch fulltime employees in a branch profile API response', closure: function () {
