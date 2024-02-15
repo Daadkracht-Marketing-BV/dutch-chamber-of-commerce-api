@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfileBranches\BaseProfileBranchesRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
@@ -71,6 +72,11 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
             sbiActivities: $sbiActivities,
             _embedded: $_embedded
         );
+    }
+
+    public function createBaseProfileBranchesRequest(): BaseProfileBranchesRequest
+    {
+        return (new BaseProfileBranchesRequest())->cocNumber($this->cocNumber);
     }
 
     /**
