@@ -6,7 +6,9 @@ use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseE
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\ApiResponse;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\SbiActivity;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Generic\TradeName;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Date;
 use JsonSerializable;
 
 class BaseProfileResponse extends ApiResponse implements JsonSerializable
@@ -15,7 +17,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         protected string $cocNumber,
         protected bool $nonMailingIndicator,
         protected string $name,
-        protected string $formalDateOfRecord,
+        protected Carbon $formalDateOfRecord,
         protected int $totalNumberOfEmployees,
         protected string $statutoryName,
         protected Collection $tradeNames,
@@ -35,7 +37,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
             $responseData['indNonMailing']
         );
         $name = $responseData['naam'];
-        $formalDateOfRecord = $responseData['formeleRegistratiedatum'];
+        $formalDateOfRecord = Date::make($responseData['formeleRegistratiedatum']);
         $totalNumberOfEmployees = $responseData['totaalWerkzamePersonen'];
         $statutoryName = $responseData['statutaireNaam'];
         $tradeNames = collect($responseData['handelsnamen'])
