@@ -50,9 +50,9 @@ it('can parse the trade names in a base profile API response', function () {
     expect($tradeNames->count())->toBe(1)->and(
         $firstTradeName->getName()
     )->toBe('Daadkracht Marketing B.V.')
-    ->and(
-        $firstTradeName->getOrder()
-    )->toBe(0);
+        ->and(
+            $firstTradeName->getOrder()
+        )->toBe(0);
 });
 
 it('can parse the non mailing indicator in a base profile API response', function () {
@@ -77,15 +77,15 @@ it('can parse the SBI activities in a base profile API response', function () {
     /** @var SbiActivity $firstSbiActivity */
     $firstSbiActivity = $sbiActivities->first();
     expect($sbiActivities->count())->toBe(1)
-    ->and(
-        $firstSbiActivity->getSbiCode()
-    )->toBe('7320')
-    ->and(
-        $firstSbiActivity->getSbiDescription()
-    )->toBe('Markt- en opinieonderzoekbureaus')
-    ->and(
-        $firstSbiActivity->getIsMainActivity()
-    )->toBe(true);
+        ->and(
+            $firstSbiActivity->getSbiCode()
+        )->toBe('7320')
+        ->and(
+            $firstSbiActivity->getSbiDescription()
+        )->toBe('Markt- en opinieonderzoekbureaus')
+        ->and(
+            $firstSbiActivity->getIsMainActivity()
+        )->toBe(true);
 });
 
 it('can parse the name in a base profile API response', function () {

@@ -55,7 +55,7 @@ class BaseProfileRequest extends ApiRequest
 
     public function getSubRequest(): string
     {
-        return '/' . $this->cocNumber;
+        return '/'.$this->cocNumber;
     }
 
     /**
