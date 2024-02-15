@@ -48,10 +48,10 @@ it('can parse the trade names in a base profile API response', function () {
     /** @var TradeName $firstTradeName */
     $firstTradeName = $tradeNames->first();
     expect($tradeNames->count())->toBe(1)->and(
-        $firstTradeName->getName()
+        $firstTradeName->name
     )->toBe('Daadkracht Marketing B.V.')
         ->and(
-            $firstTradeName->getOrder()
+            $firstTradeName->order
         )->toBe(0);
 });
 

@@ -56,7 +56,7 @@ it('can parse the branch name in a branch profile API response', closure: functi
     $tradeNames = $response->getTradeNames();
     /** @var TradeName $firstTradeName */
     $firstTradeName = $tradeNames->first();
-    expect($firstTradeName)->toBeInstanceOf(class: TradeName::class)->and($firstTradeName->getName())->toBe('Daadkracht Marketing B.V.');
+    expect($firstTradeName)->toBeInstanceOf(class: TradeName::class)->and($firstTradeName->name)->toBe('Daadkracht Marketing B.V.');
 });
 
 it('can parse the branch address in a branch profile API response', closure: function () {
