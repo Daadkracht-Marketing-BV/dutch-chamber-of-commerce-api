@@ -17,7 +17,7 @@ it('can create a branch profile request', function () {
 function performBranchRequest(): BranchProfileResponse
 {
     $request = new BranchProfileRequest();
-    $request->setBranchNumber('000022655646');
+    $request->branchNumber('000022655646');
 
     Http::fake([
         'api.kvk.nl/*' => Http::sequence([

@@ -13,7 +13,7 @@ it('can create a search request', function () {
 
 it('can set the COC number', function () {
     $request = new SearchRequest();
-    $request->setCocNumber('63546167');
+    $request->cocNumber('63546167');
     expect(
         $request->getQueryString()
     )->toBe('kvkNummer=63546167');
@@ -21,7 +21,7 @@ it('can set the COC number', function () {
 
 it('can set the RSIN', function () {
     $request = new SearchRequest();
-    $request->setRsin('123456789');
+    $request->rsin('123456789');
     expect(
         $request->getQueryString()
     )->toBe('rsin=123456789');
@@ -29,7 +29,7 @@ it('can set the RSIN', function () {
 
 it('can set the branch number', function () {
     $request = new SearchRequest();
-    $request->setBranchNumber('000000000');
+    $request->branchNumber('000000000');
     expect(
         $request->getQueryString()
     )->toBe('vestigingsnummer=000000000');
@@ -37,7 +37,7 @@ it('can set the branch number', function () {
 
 it('can set the name', function () {
     $request = new SearchRequest();
-    $request->setName('Daadkracht Marketing');
+    $request->name('Daadkracht Marketing');
     expect(
         $request->getQueryString()
     )->toBe('naam=Daadkracht+Marketing');
@@ -45,8 +45,8 @@ it('can set the name', function () {
 
 it('can unset a query parameter if it is null', function () {
     $request = new SearchRequest();
-    $request->setName('Daadkracht Marketing');
-    $request->setName(null);
+    $request->name('Daadkracht Marketing');
+    $request->name(null);
     expect(
         $request->getQueryString()
     )->toBe('');
@@ -64,11 +64,11 @@ it('can set the endpoint to the live endpoint', function () {
 
 it('correctly sets a boolean value formatted for the kvk api', function () {
     $request = new SearchRequest();
-    $request->setIncludeInactiveRegistrations(true);
+    $request->includeInactiveRegistrations(true);
     expect(
         $request->getQueryString()
     )->toBe('InclusiefInactieveRegistraties=true', 'InclusiefInactieveRegistraties should be true');
-    $request->setIncludeInactiveRegistrations(false);
+    $request->includeInactiveRegistrations(false);
     expect(
         $request->getQueryString()
     )->toBe('InclusiefInactieveRegistraties=false', 'InclusiefInactieveRegistraties should be false');
@@ -77,7 +77,7 @@ it('correctly sets a boolean value formatted for the kvk api', function () {
 function performBasicSearch(): \DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse
 {
     $request = new SearchRequest();
-    $request->setCocNumber('63546167');
+    $request->cocNumber('63546167');
 
     Http::preventStrayRequests();
 
@@ -151,7 +151,7 @@ it('can parse the address in a search API response', function () {
 
 it('generates an exception if an invalid COC number is searched for', function () {
     $request = new SearchRequest();
-    $request->setCocNumber('6354616744');
+    $request->cocNumber('6354616744');
     Http::fake([
         'api.kvk.nl/*' => Http::response(
             body: fixture('search-response-invalid-cocnumber'),

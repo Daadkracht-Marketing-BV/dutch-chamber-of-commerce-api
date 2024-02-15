@@ -26,29 +26,18 @@ class BaseProfileBranchesRequest extends ApiRequest
         $this->testMode = $testMode;
     }
 
-    public function setCocNumber(string $cocNumber): self
+    public function cocNumber(string $cocNumber): self
     {
         $this->cocNumber = $cocNumber;
 
         return $this;
     }
 
-    // setter aliases without set prefix
-    public function cocNumber(string $cocNumber): self
-    {
-        return $this->setCocNumber($cocNumber);
-    }
-
-    public function setRequestGeoData(bool $requestGeoData): self
+    public function requestGeoData(bool $requestGeoData): self
     {
         $this->requestGeoData = $requestGeoData;
 
         return $this;
-    }
-
-    public function requestGeoData(bool $requestGeoData): self
-    {
-        return $this->setRequestGeoData($requestGeoData);
     }
 
     public function getApiEndpoint(): string

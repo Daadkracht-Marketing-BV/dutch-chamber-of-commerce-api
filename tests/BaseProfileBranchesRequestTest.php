@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 function performBranchesRequest(): BaseProfileBranchesResponse
 {
     $request = new BaseProfileBranchesRequest();
-    $request->setCocNumber('6354616744');
+    $request->cocNumber('6354616744');
 
     Http::fake([
         'api.kvk.nl/*' => Http::sequence([

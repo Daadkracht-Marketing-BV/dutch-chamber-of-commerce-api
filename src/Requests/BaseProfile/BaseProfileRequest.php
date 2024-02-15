@@ -39,34 +39,23 @@ class BaseProfileRequest extends ApiRequest
         ];
     }
 
-    public function setCocNumber(string $cocNumber): self
+    public function cocNumber(string $cocNumber): self
     {
         $this->cocNumber = $cocNumber;
 
         return $this;
     }
 
-    public function setRequestGeoData(bool $requestGeoData): self
+    public function requestGeoData(bool $requestGeoData): self
     {
         $this->requestGeoData = $requestGeoData;
 
         return $this;
     }
 
-    // setter aliases without set prefix
-    public function cocNumber(string $cocNumber): self
-    {
-        return $this->setCocNumber($cocNumber);
-    }
-
-    public function requestGeoData(bool $requestGeoData): self
-    {
-        return $this->setRequestGeoData($requestGeoData);
-    }
-
     public function getSubRequest(): string
     {
-        return '/'.$this->cocNumber;
+        return '/' . $this->cocNumber;
     }
 
     /**

@@ -26,9 +26,16 @@ class BranchProfileRequest extends ApiRequest
         $this->testMode = $testMode;
     }
 
-    public function setBranchNumber(string $branchNumber): self
+    public function branchNumber(string $branchNumber): self
     {
         $this->branchNumber = $branchNumber;
+
+        return $this;
+    }
+
+    public function requestGeoData(bool $requestGeoData): self
+    {
+        $this->requestGeoData = $requestGeoData;
 
         return $this;
     }
@@ -63,25 +70,5 @@ class BranchProfileRequest extends ApiRequest
         return BranchProfileResponse::fromResponse(
             responseData: $responseData
         );
-    }
-
-    // alias for all setters without the set prefix
-    public function branchNumber(string $branchNumber): self
-    {
-        return $this->setBranchNumber($branchNumber);
-    }
-
-    public function testMode(bool $testMode): self
-    {
-        $this->testMode = $testMode;
-
-        return $this;
-    }
-
-    public function requestGeoData(bool $requestGeoData): self
-    {
-        $this->requestGeoData = $requestGeoData;
-
-        return $this;
     }
 }
