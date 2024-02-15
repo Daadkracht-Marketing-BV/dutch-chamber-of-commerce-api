@@ -2,8 +2,6 @@
 
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Traits;
 
-use JsonSerializable;
-
 trait SerializableResponse
 {
     public function jsonSerialize(): array

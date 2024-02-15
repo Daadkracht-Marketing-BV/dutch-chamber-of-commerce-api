@@ -18,17 +18,16 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
     use SerializableResponse;
 
     public function __construct(
-        public string     $cocNumber,
-        public bool       $nonMailingIndicator,
-        public string     $name,
-        public Carbon     $formalDateOfRecord,
-        public int        $totalNumberOfEmployees,
-        public string     $statutoryName,
+        public string $cocNumber,
+        public bool $nonMailingIndicator,
+        public string $name,
+        public Carbon $formalDateOfRecord,
+        public int $totalNumberOfEmployees,
+        public string $statutoryName,
         public Collection $tradeNames,
         public Collection $sbiActivities,
-        public array      $_embedded
-    )
-    {
+        public array $_embedded
+    ) {
 
     }
 
@@ -47,13 +46,13 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         $statutoryName = $responseData['statutaireNaam'];
         $tradeNames = collect($responseData['handelsnamen'])
             ->map(
-                fn($tradename) => new TradeName(
+                fn ($tradename) => new TradeName(
                     $tradename['naam'],
                     $tradename['volgorde']
                 ));
         $sbiActivities = collect($responseData['sbiActiviteiten'])
             ->map(
-                fn($sbiActivity) => new SbiActivity(
+                fn ($sbiActivity) => new SbiActivity(
                     $sbiActivity['sbiCode'],
                     $sbiActivity['sbiOmschrijving'],
                     static::yesNoToBool($sbiActivity['indHoofdactiviteit'])
@@ -84,7 +83,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
      */
     protected static function yesNoToBool($value): bool
     {
-        if (!in_array($value, ['Ja', 'Nee'])) {
+        if (! in_array($value, ['Ja', 'Nee'])) {
             throw new UnexpectedResponseException(
                 sprintf('Unexpected value for Ja/Nee field: %s', $value)
             );
