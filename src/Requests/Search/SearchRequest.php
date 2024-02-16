@@ -175,7 +175,8 @@ class SearchRequest extends ApiRequest
         }
 
         return SearchResponse::fromResponse(
-            response: $responseJson
+            response: $responseJson,
+            originalRequest: $this
         );
     }
 }

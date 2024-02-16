@@ -160,3 +160,55 @@ it('generates an exception if an invalid COC number is searched for', function (
     ]);
     $request->fetch();
 })->throws(\DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException::class, 'Het KVK-nummer 6354616744 is niet valide.');
+
+it('can use the multi page iterator for search responses', function () {
+    $request = new SearchRequest();
+    $request->streetName('De Opgang');
+    $request->place('Drachten');
+
+    Http::preventStrayRequests();
+
+    Http::fake([
+        'api.kvk.nl/*' => Http::sequence([
+            Http::response(
+                body: fixture('search-response-multipage-1')
+            ),
+            Http::response(
+                body: fixture('search-response-multipage-2')
+            ),
+        ]),
+    ]);
+
+    $response = $request->fetch();
+    $results = collect($response->resultIterator());
+    expect($results->count())->toBe(20)
+        ->and($results)->each->toBeInstanceOf(class: SearchResponseResultItem::class);
+
+    Http::assertSentCount(2);
+});
+
+it('will not fetch more pages with the iterator than the maximum requested', function () {
+    $request = new SearchRequest();
+    $request->streetName('De Opgang');
+    $request->place('Drachten');
+
+    Http::preventStrayRequests();
+
+    Http::fake([
+        'api.kvk.nl/*' => Http::sequence([
+            Http::response(
+                body: fixture('search-response-multipage-1')
+            ),
+            Http::response(
+                body: fixture('search-response-multipage-2')
+            ),
+        ]),
+    ]);
+
+    $response = $request->fetch();
+    $results = collect($response->resultIterator(0));
+    expect($results->count())->toBe(10)
+        ->and($results)->each->toBeInstanceOf(class: SearchResponseResultItem::class);
+
+    Http::assertSentCount(1);
+});

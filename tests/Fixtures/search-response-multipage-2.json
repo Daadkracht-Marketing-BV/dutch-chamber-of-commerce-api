@@ -1,0 +1,243 @@
+{
+    "pagina": 1,
+    "resultatenPerPagina": 10,
+    "totaal": 20,
+    "resultaten": [
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        },
+        {
+            "kvkNummer": "63546167",
+            "vestigingsnummer": "000022655646",
+            "naam": "Daadkracht Marketing B.V.",
+            "adres": {
+                "binnenlandsAdres": {
+                    "type": "bezoekadres",
+                    "straatnaam": "De Opgang",
+                    "plaats": "Drachten"
+                }
+            },
+            "type": "hoofdvestiging",
+            "links": [
+                {
+                    "rel": "basisprofiel",
+                    "href": "https://api.kvk.nl/api/v1/basisprofielen/63546167"
+                },
+                {
+                    "rel": "vestigingsprofiel",
+                    "href": "https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646"
+                }
+            ]
+        }
+    ],
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://api.kvk.nl/api/v2/zoeken?straatnaam=De Opgang&plaats=Drachten&pagina=1&resultatenperpagina=10"
+        }
+    ]
+}
