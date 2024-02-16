@@ -44,13 +44,20 @@ return [
 ## Usage
 
 ```php
-$dutchChamberOfCommerceApi = new DaadkrachtMarketing\DutchChamberOfCommerceApi();
-
 // try one of these
-dd($dutchChamberOfCommerceApi->searchRequest()->cocNumber('12345678')->fetch());
-dd($dutchChamberOfCommerceApi->baseProfileRequest()->cocNumber('12345678')->fetch());
-dd($dutchChamberOfCommerceApi->baseProfileBranchesRequest()->cocNumber('12345678')->fetch());
-dd($dutchChamberOfCommerceApi->branchProfileRequest()->branchNumber('12345678')->fetch());
+$response = DutchChamberOfCommerceApi::searchRequest()
+    ->place('Drachten')
+    ->streetName('De Opgang')
+    ->fetch();
+
+// get the coc number of the first result
+$response->results->first()->cocNumber;
+
+// get the profile of a company by its coc number
+$response = DutchChamberOfCommerceApi::baseProfileRequest()
+    ->byCocNumber('12345678')
+    ->fetch();
+
 ```
 
 ## Testing

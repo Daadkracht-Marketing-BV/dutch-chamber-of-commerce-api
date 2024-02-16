@@ -21,7 +21,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         public string $cocNumber,
         public bool $nonMailingIndicator,
         public string $name,
-        public Carbon $formalDateOfRecord,
+        public ?Carbon $formalDateOfRecord,
         public int $totalNumberOfEmployees,
         public string $statutoryName,
         public Collection $tradeNames,
@@ -41,7 +41,9 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
             $responseData['indNonMailing']
         );
         $name = $responseData['naam'];
-        $formalDateOfRecord = Date::make($responseData['formeleRegistratiedatum']);
+        if (isset($responseData['formeleRegistratiedatum'])) {
+            $formalDateOfRecord = Date::make($responseData['formeleRegistratiedatum']);
+        }
         $totalNumberOfEmployees = $responseData['totaalWerkzamePersonen'];
         $statutoryName = $responseData['statutaireNaam'];
         $tradeNames = collect($responseData['handelsnamen'])
