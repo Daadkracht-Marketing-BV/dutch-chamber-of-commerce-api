@@ -15,7 +15,7 @@ it('can instantiate a search request using the facade in test mode', function ()
 
 it('can instantiate a search request using the facade in live mode', function () {
     $searchRequest = DutchChamberOfCommerceApi::searchRequest(testMode: false);
-    expect($searchRequest->getApiEndpoint())->toBe('https://api.kvk.nl/api/v2/zoeken');
+    expect($searchRequest->getApiEndpzoint())->toBe('https://api.kvk.nl/api/v2/zoeken');
 });
 
 it('can instantiate a base profile request using the facade', function () {
