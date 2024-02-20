@@ -66,7 +66,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
             cocNumber: $cocNumber,
             nonMailingIndicator: $nonMailingIndicator,
             name: $name,
-            formalDateOfRecord: $formalDateOfRecord,
+            formalDateOfRecord: $formalDateOfRecord ?? null,
             totalNumberOfEmployees: $totalNumberOfEmployees,
             statutoryName: $statutoryName,
             tradeNames: $tradeNames,
