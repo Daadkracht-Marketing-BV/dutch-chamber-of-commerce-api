@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\Search;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiHttpException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse;
 use Illuminate\Support\Facades\Http;
@@ -109,11 +110,17 @@ class SearchRequest extends ApiRequest
         return $this;
     }
 
-    public function includeInactiveRegistrations(bool $includeInactiveRegistrations): self
+    public function includeInactiveRegistrations(bool $includeInactiveRegistrations = true): self
     {
         $this->query['InclusiefInactieveRegistraties'] = $includeInactiveRegistrations;
 
         return $this;
+    }
+
+    // alias for includeInactiveRegistrations
+    public function withInactiveRegistrations(bool $includeInactiveRegistrations = true): self
+    {
+        return $this->includeInactiveRegistrations($includeInactiveRegistrations);
     }
 
     public function page(int $page): self
@@ -150,6 +157,7 @@ class SearchRequest extends ApiRequest
 
     /**
      * @throws ApiException
+     * @throws ApiHttpException
      */
     public function fetch(): SearchResponse
     {
@@ -167,6 +175,10 @@ class SearchRequest extends ApiRequest
                 query: $this->getQueryString()
             );
 
+        if (ApiHttpException::isException($response)) {
+            throw ApiHttpException::fromResponse($response);
+        }
+
         // pass the json to the response object
         $responseJson = $response->json();
 
@@ -175,7 +187,8 @@ class SearchRequest extends ApiRequest
         }
 
         return SearchResponse::fromResponse(
-            response: $responseJson
+            response: $responseJson,
+            originalRequest: $this
         );
     }
 }

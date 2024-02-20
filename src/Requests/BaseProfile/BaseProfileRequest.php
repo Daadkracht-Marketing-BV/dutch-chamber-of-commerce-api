@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiHttpException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
@@ -46,11 +47,17 @@ class BaseProfileRequest extends ApiRequest
         return $this;
     }
 
-    public function requestGeoData(bool $requestGeoData): self
+    public function requestGeoData(bool $requestGeoData = true): self
     {
         $this->requestGeoData = $requestGeoData;
 
         return $this;
+    }
+
+    // withGeo alias for above function
+    public function withGeo(bool $requestGeoData = true): self
+    {
+        return $this->requestGeoData($requestGeoData);
     }
 
     public function getSubRequest(): string
@@ -61,10 +68,15 @@ class BaseProfileRequest extends ApiRequest
     /**
      * @throws ApiException
      * @throws UnexpectedResponseException
+     * @throws ApiHttpException
      */
     public function fetch(): BaseProfileResponse
     {
         $response = $this->getResponse();
+
+        if (ApiHttpException::isException($response)) {
+            throw ApiHttpException::fromResponse($response);
+        }
 
         $responseData = $response->json();
         if (ApiException::isException($responseData)) {

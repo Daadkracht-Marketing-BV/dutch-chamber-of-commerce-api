@@ -64,7 +64,12 @@ it('can parse the branch address in a branch profile API response', closure: fun
     /** @var Address $address */
     $address = $response->addresses->first();
     expect($address)->toBeInstanceOf(class: Address::class)
-        ->and($address->streetName)->toBe('De Opgang');
+        ->and($address->streetName)->toBe('De Opgang')
+        ->and($address->postalCode)->toBe('9203GD')
+        ->and($address->city)->toBe('Drachten')
+        ->and($address->country)->toBe('Nederland')
+        ->and($address->houseNumber)->toBe('2')
+        ->and($address->houseNumberAddition)->toBe('2');
 });
 
 it('can parse the branch postal code in a branch profile API response', closure: function () {

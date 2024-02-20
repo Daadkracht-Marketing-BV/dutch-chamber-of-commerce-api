@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BranchProfile;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiHttpException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BranchProfile\BranchProfileResponse;
@@ -41,6 +42,12 @@ class BranchProfileRequest extends ApiRequest
         return $this;
     }
 
+    // withGeo alias for above function
+    public function withGeo(bool $requestGeoData = true): self
+    {
+        return $this->requestGeoData($requestGeoData);
+    }
+
     public function getApiEndpoint(): string
     {
         return $this->testMode ? $this->testEndpoint : $this->liveEndpoint;
@@ -62,10 +69,15 @@ class BranchProfileRequest extends ApiRequest
     /**
      * @throws ApiException
      * @throws UnexpectedResponseException
+     * @throws ApiHttpException
      */
     public function fetch(): BranchProfileResponse
     {
         $response = $this->getResponse();
+
+        if (ApiHttpException::isException($response)) {
+            throw ApiHttpException::fromResponse($response);
+        }
 
         $responseData = $response->json();
         if (ApiException::isException($responseData)) {
