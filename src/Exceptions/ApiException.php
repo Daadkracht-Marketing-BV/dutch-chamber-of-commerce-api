@@ -21,6 +21,6 @@ class ApiException extends BaseException
 
     public static function isException($response): bool
     {
-        return isset($response['fout']) || $response->status() >= 400 && $response->status() < 600;
+        return isset($response['fout']);
     }
 }
