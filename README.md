@@ -49,15 +49,53 @@ $response = DutchChamberOfCommerceApi::searchRequest()
     ->place('Drachten')
     ->streetName('De Opgang')
     ->fetch();
+    
+// search results will be in the $response->results collection
 
 // get the coc number of the first result
 $response->results->first()->cocNumber;
 
 // get the profile of a company by its coc number
 $response = DutchChamberOfCommerceApi::baseProfileRequest()
-    ->byCocNumber('12345678')
+    ->cocNumber('12345678')
     ->fetch();
 
+// get the branches of a company by its coc number
+$response = DutchChamberOfCommerceApi::baseProfileBranchesRequest()
+    ->cocNumber('12345678')
+    ->fetch();
+
+// get the profile of a branch by its branch number
+$response = DutchChamberOfCommerceApi::branchProfileRequest()
+    ->branchNumber('12345678')
+    ->fetch();
+
+// get a certain page from a search request
+$response = DutchChamberOfCommerceApi::searchRequest()
+    ->place('Drachten')
+    ->streetName('De Opgang')
+    ->page(2)
+    ->fetch();
+
+// get a iterator for a search request, and loop through the fetched companies
+$paginator = DutchChamberOfCommerceApi::searchRequest()
+    ->place('Drachten')
+    ->streetName('De Opgang')
+    ->fetch()
+    ->resultIterator();
+
+foreach ($paginator as $result) {
+    echo $result->cocNumber;
+}
+
+// get the addresses for a branch
+$response = DutchChamberOfCommerceApi::branchProfileRequest()
+  ->branchNumber("000022655646")
+  ->fetch();
+
+$addresses = $response->addresses;
+// get the first visitable address
+$firstVisitableAddress = $addresses->firstWhere("type", "bezoekadres");
 ```
 
 ## Testing
