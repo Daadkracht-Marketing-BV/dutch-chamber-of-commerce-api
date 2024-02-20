@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfile;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiHttpException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\UnexpectedResponseException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfile\BaseProfileResponse;
@@ -67,10 +68,15 @@ class BaseProfileRequest extends ApiRequest
     /**
      * @throws ApiException
      * @throws UnexpectedResponseException
+     * @throws ApiHttpException
      */
     public function fetch(): BaseProfileResponse
     {
         $response = $this->getResponse();
+
+        if (ApiHttpException::isException($response)) {
+            throw ApiHttpException::fromResponse($response);
+        }
 
         $responseData = $response->json();
         if (ApiException::isException($responseData)) {

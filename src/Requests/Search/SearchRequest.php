@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\Search;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiHttpException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\Search\SearchResponse;
 use Illuminate\Support\Facades\Http;
@@ -156,6 +157,7 @@ class SearchRequest extends ApiRequest
 
     /**
      * @throws ApiException
+     * @throws ApiHttpException
      */
     public function fetch(): SearchResponse
     {
@@ -172,6 +174,10 @@ class SearchRequest extends ApiRequest
                 url: $this->getApiEndpoint(),
                 query: $this->getQueryString()
             );
+
+        if (ApiHttpException::isException($response)) {
+            throw ApiHttpException::fromResponse($response);
+        }
 
         // pass the json to the response object
         $responseJson = $response->json();

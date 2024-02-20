@@ -3,6 +3,7 @@
 namespace DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\BaseProfileBranches;
 
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiException;
+use DaadkrachtMarketing\DutchChamberOfCommerceApi\Exceptions\ApiHttpException;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Requests\ApiRequest;
 use DaadkrachtMarketing\DutchChamberOfCommerceApi\Responses\BaseProfileBranches\BaseProfileBranchesResponse;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -65,10 +66,15 @@ class BaseProfileBranchesRequest extends ApiRequest
 
     /**
      * @throws ApiException
+     * @throws ApiHttpException
      */
     public function fetch(): BaseProfileBranchesResponse
     {
         $response = $this->getResponse();
+
+        if (ApiHttpException::isException($response)) {
+            throw ApiHttpException::fromResponse($response);
+        }
 
         $responseData = $response->json();
         if (ApiException::isException($responseData)) {
