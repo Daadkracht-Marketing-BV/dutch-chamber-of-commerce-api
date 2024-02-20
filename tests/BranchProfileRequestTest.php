@@ -36,7 +36,7 @@ it('can set the branch number', function () {
     performBranchRequest();
 
     Http::assertSent(
-        fn (Request $request) => $request->url() === 'https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646'
+        fn (Request $request) => $request->url() === 'https://api.kvk.nl/api/v1/vestigingsprofielen/000022655646?geoData=False'
     );
 });
 

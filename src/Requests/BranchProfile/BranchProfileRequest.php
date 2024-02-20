@@ -21,7 +21,7 @@ class BranchProfileRequest extends ApiRequest
 
     protected string $branchNumber;
 
-    protected bool $requestGeoData;
+    protected bool $requestGeoData = false;
 
     public function __construct($testMode = false)
     {
@@ -53,6 +53,13 @@ class BranchProfileRequest extends ApiRequest
         return $this->testMode ? $this->testEndpoint : $this->liveEndpoint;
     }
 
+    public function getQueryString(): array
+    {
+        return [
+            'geoData' => $this->requestGeoData ? 'True' : 'False',
+        ];
+    }
+
     protected function getResponse(): Response|PromiseInterface
     {
         $apiKey = config('dutch-chamber-of-commerce-api.api_key');
@@ -63,7 +70,10 @@ class BranchProfileRequest extends ApiRequest
             ]
         )->withHeaders([
             'apikey' => $apiKey,
-        ])->get($this->getApiEndpoint().'/'.$this->branchNumber);
+        ])->get(
+            url: $this->getApiEndpoint().'/'.$this->branchNumber,
+            query: $this->getQueryString()
+        );
     }
 
     /**
