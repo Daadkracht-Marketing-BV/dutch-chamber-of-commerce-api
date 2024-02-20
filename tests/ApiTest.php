@@ -14,7 +14,7 @@ it('can instantiate a search request using the facade in test mode', function ()
 });
 
 it('can instantiate a search request using the facade in live mode', function () {
-    $searchRequest = DutchChamberOfCommerceApi::searchRequest(testMode: false);
+    $searchRequest = DutchChamberOfCommerceApi::searchRequest();
     expect($searchRequest->getApiEndpzoint())->toBe('https://api.kvk.nl/api/v2/zoeken');
 });
 
@@ -29,7 +29,7 @@ it('can instantiate a base profile request using the facade in test mode', funct
 });
 
 it('can instantiate a base profile request using the facade in live mode', function () {
-    $baseProfileRequest = DutchChamberOfCommerceApi::baseProfileRequest(testMode: false);
+    $baseProfileRequest = DutchChamberOfCommerceApi::baseProfileRequest();
     expect($baseProfileRequest->getApiEndpoint())->toBe('https://api.kvk.nl/api/v1/basisprofielen');
 });
 
@@ -44,7 +44,7 @@ it('can instantiate a base profile branches request using the facade in test mod
 });
 
 it('can instantiate a base profile branches request using the facade in live mode', function () {
-    $baseProfileBranchesRequest = DutchChamberOfCommerceApi::baseProfileBranchesRequest(testMode: false);
+    $baseProfileBranchesRequest = DutchChamberOfCommerceApi::baseProfileBranchesRequest();
     expect($baseProfileBranchesRequest->getApiEndpoint())->toBe('https://api.kvk.nl/api/v1/basisprofielen');
 });
 
@@ -59,6 +59,6 @@ it('can instantiate a branch profile request using the facade in test mode', fun
 });
 
 it('can instantiate a branch profile request using the facade in live mode', function () {
-    $branchProfileRequest = DutchChamberOfCommerceApi::branchProfileRequest(testMode: false);
+    $branchProfileRequest = DutchChamberOfCommerceApi::branchProfileRequest();
     expect($branchProfileRequest->getApiEndpoint())->toBe('https://api.kvk.nl/api/v1/vestigingsprofielen');
 });
