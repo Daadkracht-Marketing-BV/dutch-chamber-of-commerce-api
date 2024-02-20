@@ -109,11 +109,17 @@ class SearchRequest extends ApiRequest
         return $this;
     }
 
-    public function includeInactiveRegistrations(bool $includeInactiveRegistrations): self
+    public function includeInactiveRegistrations(bool $includeInactiveRegistrations = true): self
     {
         $this->query['InclusiefInactieveRegistraties'] = $includeInactiveRegistrations;
 
         return $this;
+    }
+
+    // alias for includeInactiveRegistrations
+    public function withInactiveRegistrations(bool $includeInactiveRegistrations = true): self
+    {
+        return $this->includeInactiveRegistrations($includeInactiveRegistrations);
     }
 
     public function page(int $page): self
