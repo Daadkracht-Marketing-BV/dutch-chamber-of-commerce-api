@@ -37,7 +37,7 @@ class SearchResponse extends ApiResponse implements JsonSerializable
         );
     }
 
-    public function getNextPageNumber(int $currentPage = null): ?int
+    public function getNextPageNumber(?int $currentPage = null): ?int
     {
         $nextPage = ($currentPage ?? $this->page) + 1;
         $totalPages = ceil($this->totalResults / $this->resultsPerPage);
@@ -63,8 +63,7 @@ class SearchResponse extends ApiResponse implements JsonSerializable
         }
 
         // are there any more pages?
-        while ($nextPage = $this->getNextPageNumber($currentPage))
-        {
+        while ($nextPage = $this->getNextPageNumber($currentPage)) {
             $clone = clone $this->originalRequest;
             $clone->page($nextPage);
 
