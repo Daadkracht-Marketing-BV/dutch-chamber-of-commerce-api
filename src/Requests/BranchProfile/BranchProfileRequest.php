@@ -41,6 +41,12 @@ class BranchProfileRequest extends ApiRequest
         return $this;
     }
 
+    // withGeo alias for above function
+    public function withGeo(bool $requestGeoData = true): self
+    {
+        return $this->requestGeoData($requestGeoData);
+    }
+
     public function getApiEndpoint(): string
     {
         return $this->testMode ? $this->testEndpoint : $this->liveEndpoint;

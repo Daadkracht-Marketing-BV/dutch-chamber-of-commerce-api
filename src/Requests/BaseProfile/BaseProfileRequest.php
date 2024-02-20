@@ -46,11 +46,17 @@ class BaseProfileRequest extends ApiRequest
         return $this;
     }
 
-    public function requestGeoData(bool $requestGeoData): self
+    public function requestGeoData(bool $requestGeoData = true): self
     {
         $this->requestGeoData = $requestGeoData;
 
         return $this;
+    }
+
+    // withGeo alias for above function
+    public function withGeo(bool $requestGeoData = true): self
+    {
+        return $this->requestGeoData($requestGeoData);
     }
 
     public function getSubRequest(): string
