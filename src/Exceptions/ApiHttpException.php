@@ -17,7 +17,7 @@ class ApiHttpException extends BaseException
 
     public static function fromResponse(Response $response): ApiHttpException
     {
-        return new self('An error occurred while communicating with the API', $response->status(), $response->toException());
+        return new self('An error occurred while communicating with the API.', $response->status(), $response->toException());
     }
 
     public static function isException(Response $response): bool
