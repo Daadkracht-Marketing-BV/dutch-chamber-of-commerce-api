@@ -22,6 +22,6 @@ class ApiHttpException extends BaseException
 
     public static function isException(Response $response): bool
     {
-        return !($response->json()) && $response->status() >= 400 && $response->status() < 600;
+        return ! ($response->json()) && $response->status() >= 400 && $response->status() < 600;
     }
 }
