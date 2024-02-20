@@ -125,7 +125,7 @@ This can be chained in the following way:
 
 ```php
 $fullBranchProfile = DutchChamberOfCommerceApi::baseProfileBranchesRequest()
-    ->cocNumber("63546167")
+    ->cocNumber('63546167')
     ->fetch()
     ->branches->firstWhere('isMainBranch', true)
     ->createFullBranchProfileRequest()
