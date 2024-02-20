@@ -91,6 +91,7 @@ foreach ($paginator as $result) {
 // get the addresses for a branch
 $response = DutchChamberOfCommerceApi::branchProfileRequest()
   ->branchNumber("000022655646")
+  ->withGeo()
   ->fetch();
 
 $addresses = $response->addresses;
