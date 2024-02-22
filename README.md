@@ -1,10 +1,5 @@
 # Package to interact with the Dutch Chamber of Commerce API (KVK)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/daadkracht-marketing-bv/dutch-chamber-of-commerce-api.svg?style=flat-square)](https://packagist.org/packages/daadkracht-marketing-bv/dutch-chamber-of-commerce-api)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/daadkracht-marketing-bv/dutch-chamber-of-commerce-api/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/daadkracht-marketing-bv/dutch-chamber-of-commerce-api/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/daadkracht-marketing-bv/dutch-chamber-of-commerce-api/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/daadkracht-marketing-bv/dutch-chamber-of-commerce-api/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/daadkracht-marketing-bv/dutch-chamber-of-commerce-api.svg?style=flat-square)](https://packagist.org/packages/daadkracht-marketing-bv/dutch-chamber-of-commerce-api)
-
 This package provides a simple way to interact with the Dutch Chamber of Commerce API (KVK).
 
 ## Requirements
