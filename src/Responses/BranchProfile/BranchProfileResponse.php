@@ -35,6 +35,7 @@ class BranchProfileResponse extends ApiResponse implements JsonSerializable
         public Collection $addresses,
         public Collection $websites,
         public Collection $sbiActivities,
+        public ?string $canonicalUrl = null,
     ) {
 
     }
@@ -144,6 +145,7 @@ class BranchProfileResponse extends ApiResponse implements JsonSerializable
             addresses: $items['addresses'],
             websites: $items['websites'],
             sbiActivities: $items['sbiActivities'],
+            canonicalUrl: collect($responseData['links'])->firstWhere('rel', 'self')['href'] ?? null,
         );
     }
 

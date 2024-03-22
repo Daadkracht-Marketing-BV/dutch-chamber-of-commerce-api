@@ -18,7 +18,8 @@ class BaseProfileBranchesResponse extends ApiResponse implements JsonSerializabl
         public int $commercialBranches,
         public int $nonCommercialBranches,
         public int $totalBranches,
-        public Collection $branches
+        public Collection $branches,
+        public ?string $canonicalUrl = null,
     ) {
 
     }
@@ -45,7 +46,8 @@ class BaseProfileBranchesResponse extends ApiResponse implements JsonSerializabl
             commercialBranches: $commercialBranches,
             nonCommercialBranches: $nonCommercialBranches,
             totalBranches: $totalBranches,
-            branches: $branches
+            branches: $branches,
+            canonicalUrl: collect($responseData['links'])->firstWhere('rel', 'self')['href'] ?? null,
         );
     }
 

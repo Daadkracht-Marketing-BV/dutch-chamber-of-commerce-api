@@ -26,7 +26,8 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         public string $statutoryName,
         public Collection $tradeNames,
         public Collection $sbiActivities,
-        public array $_embedded
+        public array $_embedded,
+        public ?string $canonicalUrl = null,
     ) {
 
     }
@@ -71,7 +72,8 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
             statutoryName: $statutoryName,
             tradeNames: $tradeNames,
             sbiActivities: $sbiActivities,
-            _embedded: $_embedded
+            _embedded: $_embedded,
+            canonicalUrl: collect($responseData['links'])->firstWhere('rel', 'self')['href'] ?? null,
         );
     }
 

@@ -19,7 +19,8 @@ class SearchResponseResultItem implements JsonSerializable
         public string $name,
         public Collection $addresses,
         public string $type,
-        public bool $active
+        public bool $active,
+        public ?string $canonicalUrl = null,
     ) {
     }
 
@@ -72,7 +73,8 @@ class SearchResponseResultItem implements JsonSerializable
                 }
             }),
             type: $items['type'],
-            active: self::yesNoToBool($responseData['actief'] ?? 'Ja')
+            active: self::yesNoToBool($responseData['actief'] ?? 'Ja'),
+            canonicalUrl: collect($responseData['links'])->firstWhere('rel', 'self')['href'] ?? null,
         );
     }
 
