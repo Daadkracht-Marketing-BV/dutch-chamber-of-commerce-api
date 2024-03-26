@@ -20,10 +20,10 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
     public function __construct(
         public string $cocNumber,
         public bool $nonMailingIndicator,
-        public string $name,
+        public ?string $name,
         public ?Carbon $formalDateOfRecord,
         public int $totalNumberOfEmployees,
-        public string $statutoryName,
+        public ?string $statutoryName,
         public Collection $tradeNames,
         public Collection $sbiActivities,
         public array $_embedded,
@@ -46,7 +46,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
             $formalDateOfRecord = Date::make($responseData['formeleRegistratiedatum']);
         }
         $totalNumberOfEmployees = $responseData['totaalWerkzamePersonen'];
-        $statutoryName = $responseData['statutaireNaam'];
+        $statutoryName = $responseData['statutaireNaam'] ?? null;
         $tradeNames = collect($responseData['handelsnamen'])
             ->map(
                 fn ($tradename) => new TradeName(
