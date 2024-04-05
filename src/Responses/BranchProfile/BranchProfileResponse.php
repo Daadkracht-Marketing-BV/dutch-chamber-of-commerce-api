@@ -106,7 +106,7 @@ class BranchProfileResponse extends ApiResponse implements JsonSerializable
             )
         );
 
-        $items['websites'] = collect($responseData['websites'])->map(
+        $items['websites'] = collect($responseData['websites'] ?? [])->map(
             fn ($website) => $website
         );
 
@@ -130,7 +130,7 @@ class BranchProfileResponse extends ApiResponse implements JsonSerializable
         return new self(
             branchNumber: $items['branchNumber'],
             cocNumber: $items['cocNumber'],
-            rsin: $items['rsin'],
+            rsin: $items['rsin'] ?? null,
             nonMailingIndicator: $items['nonMailingIndicator'],
             formalDateOfRecord: isset($items['formalDateOfRecord']) ? Date::make($items['formalDateOfRecord']) : null,
             materialRegistration: $items['materialRegistration'],
