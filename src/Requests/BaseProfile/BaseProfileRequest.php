@@ -100,7 +100,7 @@ class BaseProfileRequest extends ApiRequest
         )
             ->withHeaders(['apikey' => $apiKey])
             ->get(
-                url: $this->getApiEndpoint().'/'.$this->getSubRequest(),
+                url: $this->getApiEndpoint().$this->getSubRequest(),
                 query: $this->getQueryString()
             );
     }
