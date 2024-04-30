@@ -66,7 +66,7 @@ class BranchProfileRequest extends ApiRequest
 
         return Http::withOptions(
             [
-                'verify' => dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'dist'.DIRECTORY_SEPARATOR.'cacert.pem',
+                'verify' => config('dutch-chamber-of-commerce-api.verify'),
             ]
         )->withHeaders([
             'apikey' => $apiKey,
