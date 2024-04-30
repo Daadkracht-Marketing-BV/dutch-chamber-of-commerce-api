@@ -93,7 +93,7 @@ class BaseProfileBranchesRequest extends ApiRequest
         return Http::withOptions(
             // set the CA bundle to the one provided by the package
             [
-                'verify' => dirname(__DIR__, 3).DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'dist'.DIRECTORY_SEPARATOR.'cacert.pem',
+                'verify' => config('dutch-chamber-of-commerce-api.verify'),
             ]
         )
             ->withHeaders(['apikey' => $apiKey])
