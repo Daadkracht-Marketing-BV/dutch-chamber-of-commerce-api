@@ -80,7 +80,7 @@ class BranchProfileResponse extends ApiResponse implements JsonSerializable
             'datumEinde' => 'dateEnd',
         ];
 
-        $items['materialRegistration'] = collect($responseData['materieleRegistratie'])->map(
+        $items['materialRegistration'] = collect($responseData['materieleRegistratie'] ?? [])->map(
             fn ($date, $type) => [
                 'type' => $typeMap[$type] ?? $type,
                 'date' => Date::make($date),
@@ -119,7 +119,7 @@ class BranchProfileResponse extends ApiResponse implements JsonSerializable
             )
         );
 
-        $items['sbiActivities'] = collect($responseData['sbiActiviteiten'])->map(
+        $items['sbiActivities'] = collect($responseData['sbiActiviteiten'] ?? [])->map(
             fn ($activity) => new SbiActivity(
                 sbiCode: $activity['sbiCode'],
                 sbiDescription: $activity['sbiOmschrijving'],

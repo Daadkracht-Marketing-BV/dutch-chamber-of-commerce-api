@@ -21,8 +21,9 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         public string $cocNumber,
         public bool $nonMailingIndicator,
         public string $name,
+        public Collection $materialRegistration,
         public ?Carbon $formalDateOfRecord,
-        public int $totalNumberOfEmployees,
+        public ?int $totalNumberOfEmployees,
         public ?string $statutoryName,
         public Collection $tradeNames,
         public Collection $sbiActivities,
@@ -45,15 +46,28 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
         if (isset($responseData['formeleRegistratiedatum'])) {
             $formalDateOfRecord = Date::make($responseData['formeleRegistratiedatum']);
         }
-        $totalNumberOfEmployees = $responseData['totaalWerkzamePersonen'];
+
+        $totalNumberOfEmployees = $responseData['totaalWerkzamePersonen'] ?? null;
+
+        $typeMap = [
+            'datumAanvang' => 'dateStart',
+            'datumEinde' => 'dateEnd',
+        ];
+        $materialRegistration = collect($responseData['materieleRegistratie'] ?? [])->map(
+            fn ($date, $type) => [
+                'type' => $typeMap[$type] ?? $type,
+                'date' => Date::make($date),
+            ]
+        );
+
         $statutoryName = $responseData['statutaireNaam'] ?? null;
-        $tradeNames = collect($responseData['handelsnamen'])
+        $tradeNames = collect($responseData['handelsnamen'] ?? [])
             ->map(
                 fn ($tradename) => new TradeName(
                     $tradename['naam'],
                     $tradename['volgorde']
                 ));
-        $sbiActivities = collect($responseData['sbiActiviteiten'])
+        $sbiActivities = collect($responseData['sbiActiviteiten'] ?? [])
             ->map(
                 fn ($sbiActivity) => new SbiActivity(
                     $sbiActivity['sbiCode'],
@@ -67,6 +81,7 @@ class BaseProfileResponse extends ApiResponse implements JsonSerializable
             cocNumber: $cocNumber,
             nonMailingIndicator: $nonMailingIndicator,
             name: $name,
+            materialRegistration: $materialRegistration,
             formalDateOfRecord: $formalDateOfRecord ?? null,
             totalNumberOfEmployees: $totalNumberOfEmployees,
             statutoryName: $statutoryName,
