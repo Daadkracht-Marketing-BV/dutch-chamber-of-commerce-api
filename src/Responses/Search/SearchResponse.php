@@ -25,7 +25,7 @@ class SearchResponse extends ApiResponse implements JsonSerializable
     public static function fromResponse(array $response, SearchRequest $originalRequest): self
     {
         $results = collect($response['resultaten'])->map(function ($result) {
-            return SearchResponseResultItem::fromResponse($result, canonicalUrl: collect($response['links'] ?? [])->firstWhere('rel', 'self')['href'] ?? null,);
+            return SearchResponseResultItem::fromResponse($result, canonicalUrl: collect($response['links'] ?? [])->firstWhere('rel', 'self')['href'] ?? null);
         });
 
         return new self(
