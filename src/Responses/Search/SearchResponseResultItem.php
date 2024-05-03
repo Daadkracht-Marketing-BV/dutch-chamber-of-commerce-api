@@ -27,7 +27,7 @@ class SearchResponseResultItem implements JsonSerializable
     /**
      * @throws UnexpectedResponseException
      */
-    public static function fromResponse($responseData): self
+    public static function fromResponse($responseData, $canonicalUrl = null): self
     {
         $responseMap = [
             'kvkNummer' => 'cocNumber',
@@ -74,7 +74,7 @@ class SearchResponseResultItem implements JsonSerializable
             }),
             type: $items['type'],
             active: self::yesNoToBool($responseData['actief'] ?? 'Ja'),
-            canonicalUrl: collect($responseData['links'])->firstWhere('rel', 'self')['href'] ?? null,
+            canonicalUrl: $canonicalUrl
         );
     }
 
