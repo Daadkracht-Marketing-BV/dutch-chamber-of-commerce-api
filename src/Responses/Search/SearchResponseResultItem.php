@@ -57,7 +57,7 @@ class SearchResponseResultItem implements JsonSerializable
             addresses: collect($responseData['adres'])->map(function ($address, $type) {
                 if ($type == 'binnenlandsAdres') {
                     return new DomesticAddress(
-                        streetName: $address['straatnaam'],
+                        streetName: $address['straatnaam'] ?? null,
                         houseNumber: $address['huisnummer'] ?? null,
                         houseLetter: $address['huisLetter'] ?? null,
                         poBoxNumber: $address['postbusnummer'] ?? null,
