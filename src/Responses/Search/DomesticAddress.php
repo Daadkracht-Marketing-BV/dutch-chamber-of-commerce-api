@@ -10,7 +10,7 @@ class DomesticAddress implements JsonSerializable
     use SerializableResponse;
 
     public function __construct(
-        public string $streetName,
+        public ?string $streetName,
         public ?string $houseNumber,
         public ?string $houseLetter,
         public ?int $poBoxNumber,
